@@ -1,9 +1,0 @@
-c:\users\ahmed\documents\visual studio 2015\Projects\ShortestGraph\ShortestGraph\bin\Debug\ShortestGraph.exe.config
-c:\users\ahmed\documents\visual studio 2015\Projects\ShortestGraph\ShortestGraph\bin\Debug\ShortestGraph.exe
-c:\users\ahmed\documents\visual studio 2015\Projects\ShortestGraph\ShortestGraph\bin\Debug\ShortestGraph.pdb
-c:\users\ahmed\documents\visual studio 2015\Projects\ShortestGraph\ShortestGraph\obj\Debug\ShortestGraph.csprojResolveAssemblyReference.cache
-c:\users\ahmed\documents\visual studio 2015\Projects\ShortestGraph\ShortestGraph\obj\Debug\ShortestGraph.exe
-c:\users\ahmed\documents\visual studio 2015\Projects\ShortestGraph\ShortestGraph\obj\Debug\ShortestGraph.pdb
-C:\Users\Ahmed\Desktop\ShortestGraph\ShortestGraph\bin\Debug\ShortestGraph.exe.config
-C:\Users\Ahmed\Desktop\ShortestGraph\ShortestGraph\obj\Debug\ShortestGraph.exe
-C:\Users\Ahmed\Desktop\ShortestGraph\ShortestGraph\obj\Debug\ShortestGraph.pdb

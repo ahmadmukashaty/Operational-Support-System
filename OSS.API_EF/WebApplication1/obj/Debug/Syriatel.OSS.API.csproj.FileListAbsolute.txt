@@ -1,1 +1,0 @@
-D:\OSS\Operation SubSystem\OSS\Syriatel.OSS.API_EF\Syriatel.OSS.API\WebApplication1\obj\Debug\Syriatel.OSS.API.csprojResolveAssemblyReference.cache
