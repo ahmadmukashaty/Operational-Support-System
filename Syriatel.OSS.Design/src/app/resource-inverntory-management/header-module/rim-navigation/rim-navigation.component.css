@@ -1,0 +1,34 @@
+.Naviagetion_Category li{
+    width: 190px;
+  }
+  .Naviagetion_Category{
+    padding-left: 600px !important;
+  }
+
+  @media (max-width: 1700px) {
+	.Naviagetion_Category{
+	  padding-left: 150px !important;
+	}
+  }
+  /* -----------------Transmission-------------------------*/
+  .theme1_oddStyle{
+    background: #00b1ba !important;
+  
+  }
+  .theme1_evenStyle{
+    background: #088389 !important;
+    
+  }
+  /* -----------------ran-------------------------*/
+  .theme2_oddStyle{
+  /*  background: #cb78ce !important;*/
+  background: #206ab3 !important;
+    
+  }
+  .theme2_evenStyle{
+    /*background: #b400ba !important;
+    background: #dcb887 !important;*/
+    
+   background: #58a3d0 !important;
+    
+  }

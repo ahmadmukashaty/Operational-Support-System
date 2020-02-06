@@ -1,0 +1,49 @@
+agm-map, vector_map {
+    width: 100%;
+    height: 800px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.page1-test{
+    position: relative;
+    z-index:0;
+    background: linear-gradient(#9ca3ad ,#022527);
+   padding-top: 50px;
+    min-height: 900px;
+    padding-top: 0px;
+ 
+  }
+
+  .p-header-style{
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    padding-left:10px;
+    padding-top:10px;
+    
+}
+.tree_style.box.shadow1 {
+   /* width: 400px;
+        height: 300px; */
+    margin-left: 00px;
+    margin-top: 10px;
+    /* max-height:300px; */
+    
+}
+.tree_style{
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    padding-left:0px !important;
+    /* max-height:500px !important; */
+  
+}
+.box{
+    /* width:40%; */
+   
+    border-radius:5px;  
+    z-index: +3;
+    background:#f5ede3 !important;
+    }
+    .shadow1{
+        position:relative;
+        box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+        }

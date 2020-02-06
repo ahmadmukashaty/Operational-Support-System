@@ -1,0 +1,161 @@
+
+ <div id="st-container" class="st-container page1">
+    <div class="st-menu st-effect-11" id="menu-11" style="background: darkgray;">
+      <div class="sidebar-home">
+          <img id="login-rim-log" src="http://seserv112/RIM_Images/logo7.png" alt="Logo alt">
+          <div class="row ">
+              <p-tabMenu class="log-tab" [model]="items" [style]="{'margin-left':'25px','padding-left':'25px','padding-top':'150px'}"> </p-tabMenu>  
+          </div>
+         
+          
+      </div>
+    </div>
+    <div class="st-pusher">
+      <div class="st-content">        
+        <div id="st-trigger-effects">
+           
+            <div *ngIf="homePage; else: mainContent" >
+                <header>
+                    <div class="header_style">
+                      <div class="row">
+                          <div class="col-xs-2">
+                              <img id="syriatel-logo" src="./assets/images/syriatel.png" alt="Logo alt">
+                          </div>
+                          <div class="logoStyle col-xs-3">
+                              <img  id="rim-logo" src="http://seserv112/RIM_Images/logo7.png" alt="Logo alt">
+                          </div>
+                      </div>
+                    </div>
+                    
+                    <section id="stuck_container">
+                  
+                      <div class="header_style">
+                        <div class="row">
+                          <div class="grid_12 ">
+                            <div class="navigation ">
+                              <nav>
+                                <ul class="sf-menu nav_text">
+                                  <li class="current"><a href="index.html">Home</a></li>
+                                  <li><a href="about.html">About</a></li>
+                                  <li><a href="services.html">Services</a></li>
+                                  <li><a href="blog.html">Map Viewer</a></li>
+                                  <li><a href="contacts.html">Reports</a></li>
+                                  <li><a id="loginSlideBtn" data-effect="st-effect-11">Login</a></li>
+                                </ul>
+                              </nav>
+                              <div class="clear"></div>
+                            </div>       
+                            <div class="clear"></div>  
+                          </div>
+                        </div> 
+                      </div> 
+                    </section>
+                    <section class="page1_header">
+                      <div class="header_style">
+                        <div class="row">
+                          <div class="grid_4 portfolioFilter">
+                            <a class="banner current selectedITem" data-filter="*"  (click)="Filter()"><div class="maxheight">
+                              <div class="fa fa-globe"></div>All</div>
+                            </a>
+                            <a class="banner selectedITem2"  data-filter=".PhysicalInventory" (click)="Filter2($event)"><div class="maxheight">
+                              <div class="fa fa-wrench"></div>Physical Inventory</div>
+                            </a>
+                            <a class="banner selectedITem3" data-filter=".ResourceConfigration" (click)="Filter3()"><div class="maxheight">
+                                <div class="fa fa-cog"></div>Resource Configration</div>
+                              </a>
+                              <a class="banner selectedITem4" data-filter=".ResourceTopology" (click)="Filter4()"><div class="maxheight">
+                                 <div class="fa fa-lightbulb-o"></div>Resource Topology</div>
+                              </a>
+                          </div>
+                          <div class="grid_5 grid_5_edit_style">
+                            <div class="row"> 
+                                <div id="header_text_style" class="col-xs-5">
+                                  <p class="first_letter_style">Resource </p> <br><p class="first_letter_style">Inventory</p><br> <p class="first_letter_style"> Management</p>
+                                </div>
+                             
+              
+                            </div>
+                           <div id="device_text_style"><br> We help you run your business  in a successful way</div> 
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  </header> 
+              
+              
+              
+              
+                  
+                  <div class="block-1">
+                    <div class="container">
+                      <div class="row">
+                        <section class="main-section paddind" id="Portfolio">
+                            <div class="portfolioContainer wow fadeInUp delay-04s">
+                                <div class=" Portfolio-box PhysicalInventory services-block-alt" style="height:400px;" (click)="RANClick()">
+                                    <div class="image" style="width: 300px">
+                                      <a class="image-scale-color" ><img src="./assets/images/RanTelecomOSS.jpg" alt=""></a>
+                                      <i class="fa fa-phone"></i>
+                                    </div>
+                                    <h3>RAN</h3>
+                                    <p>physical inventory</p>
+                                </div>
+                                  <div class=" Portfolio-box PhysicalInventory services-block-alt" style="height:400px;" (click)="TransmissionClick()">
+                                      <div class="image" style="width: 300px">
+                                        <a class="image-scale-color" ><img src="./assets/images/silhouette-telecommunication-towers-tv-antennas-260nw-525296458.png" alt=""></a>
+                                        <i class="fa fa-phone"></i>
+                                      </div>
+                                      <h3>Transmission</h3>
+                                      <p>physical inventory</p>
+                                  </div>
+                                  <div class=" Portfolio-box PhysicalInventory services-block-alt" style="height:400px;">
+                                      <div class="image" style="width: 300px">
+                                        <a class="image-scale-color" ><img src="./assets/images/CoreTelecomOSS.jpg" alt=""></a>
+                                        <i class="fa fa-lock"></i>
+                                      </div>
+                                      <h3>Core</h3>
+                                      <p>physical inventory</p>
+                                  </div>
+                                  <div class=" Portfolio-box ResourceTopology services-block-alt" style="height:400px;">
+                                      <div class="image" style="width: 300px">
+                                        <a class="image-scale-color" ><img src="./assets/images/Other1.jpg" alt=""></a>
+                                        <i class="fa fa-lock"></i>
+                                      </div>
+                                      <h3>Other</h3>
+                                      <p>Resource Topology</p>
+                                  </div>
+                                  <div class=" Portfolio-box ResourceConfigration services-block-alt" style="height:400px;">
+                                      <div class="image" style="width: 300px">
+                                        <a class="image-scale-color" ><img src="./assets/images/Other2.jpg" alt=""></a>
+                                        <i class="fa fa-lock"></i>
+                                      </div>
+                                      <h3>Other</h3>
+                                      <p>Resource Configration</p>
+                                  </div>
+                                  <div class=" Portfolio-box ResourceTopology services-block-alt" style="height:400px;">
+                                      <div class="image" style="width: 300px">
+                                        <a class="image-scale-color" ><img src="./assets/images/Other3.jpg" alt=""></a>
+                                        <i class="fa fa-lock"></i>
+                                      </div>
+                                      <h3>Other</h3>
+                                      <p>Resource Topology</p>
+                                  </div>
+                            </div>
+                        </section>
+                      </div>
+                    </div>
+                  </div>
+              
+                </div>
+
+
+                <ng-template #mainContent>
+
+                    <router-outlet></router-outlet>
+              
+              
+                </ng-template>
+        </div>
+
+      </div>
+    </div>
+  </div>

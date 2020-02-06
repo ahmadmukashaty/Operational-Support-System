@@ -1,0 +1,27 @@
+
+<!-- [ngClass]="{'trans-img-ngClass': trans,'ran-img-ngClass':ran}" -->
+<div class="row" [ngClass]="Model.BackgroundImg_css_class">
+    
+      <div class="col-xs-1">
+          <app-rim-logo></app-rim-logo>
+      </div>
+  
+      <div class="col-xs-9">
+          <app-rim-navigation [ModelInfoObj2]="Model"></app-rim-navigation>
+      </div>
+
+     <!-- <div class="col-xs-1 pos">
+        <app-rim-profile [ModelInfoObj]="Model"></app-rim-profile>
+      </div>   -->
+  
+      <div class="t">
+          <div [ngClass]="Model.Tabs_css_class">
+              <ul>
+                <li *ngFor="let tab of Model.tabs" (click)="ActiveNavigation($event)" [routerLinkActive]="['active']" >
+                  <a [routerLink]="[tab.routerLink]" class="tab_style">{{tab.label}}</a>
+                </li>
+              </ul>
+          </div> 
+      </div>
+    
+</div>

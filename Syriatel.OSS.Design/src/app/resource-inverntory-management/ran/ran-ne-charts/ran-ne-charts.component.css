@@ -1,0 +1,267 @@
+.ChartsCriteria{
+    display: none;
+    padding-bottom: 40px;
+}
+.ChartsVeiw{
+    padding-bottom: 40px;
+}
+
+.toggleChart{
+    padding-right: 130px;
+    padding-top: 45px;
+}
+.generateChart{
+    padding-top: 45px; 
+}
+.shadow2{
+    padding-right: 10px;
+}
+div#more-detailss {
+    overflow-x: hidden;
+}
+.ReportChart{
+    padding: 0px 100px;
+    padding-bottom: 100px;
+}
+.canvas1 {
+    height: 350px;
+}
+.canvas2 {
+    height: 350px;
+}
+.canvas3 {
+    height: 350px;
+}
+.canvas4 {
+    height: 350px;
+}
+
+
+@import "~ag-grid/dist/styles/ag-grid.css";
+@import "~ag-grid/dist/styles/ag-theme-balham.css";
+       
+
+.p-header-style{
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    padding-left:10px;
+    padding-top:10px;
+}
+.tree_style.box.shadow1 {
+    /* width: 400px; */
+    
+    /* height: 300px; */
+    margin-left: 120px;
+    margin-top: 30px;
+    /* max-height:300px; */
+    
+}
+
+.tree_style.box.shadow2 {
+    /* width: 400px; */
+    
+    /* height: 300px; */
+    margin-left: 185px;
+    margin-top: 30px;
+    /* max-height:300px; */
+    
+}
+.chart-style.box.shadow10 {
+    /* width: 700px; */
+    height:425px;
+    
+    /* height: 300px; */
+    margin-left: 130px;
+    margin-top: 30px;
+    /* max-height:300px; */
+    
+}
+.chart-style.box.shadow11 {
+    /* width: 700px; */
+    height:425px;
+    
+    /* height: 300px; */
+    margin-left: 60px;
+    margin-top: 30px;
+    /* max-height:300px; */
+    
+}
+.chart-style.box.shadow12 {
+    /* width: 700px; */
+    height:425px;
+    
+    /* height: 300px; */
+    margin-left: 130px;
+    margin-top: 30px;
+    /* max-height:300px; */
+    
+}
+.chart-style.box.shadow13 {
+    /* width: 700px; */
+    height:425px;
+    
+    /* height: 300px; */
+    margin-left: 60px;
+    margin-top: 30px;
+    /* max-height:300px; */
+    
+}
+.tree_style{
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    /* max-height:500px !important; */
+}
+.box{
+    /* width:40%; */
+   
+    border-radius:5px;  
+    
+    background:#f5ede3 !important;
+    }
+    .shadow1{
+        position:relative;
+        box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+        padding-right: 10px;
+        }
+       
+        /*****************************************************************dashed border
+        ****************************************************************/
+        
+        /****************************************************************
+        *styling shadows
+        ****************************************************************/
+        .shadow1:before, .shadow1:after{
+        position:absolute;
+        content:"";
+        bottom:12px;left:15px;top:80%;
+        width:45%;
+        background:rgb(93, 121, 131);
+        z-index:-1;
+        -webkit-box-shadow: 0 20px 15px rgb(93, 121, 131);
+        -moz-box-shadow: 0 20px 15px rgb(93, 121, 131);
+        box-shadow: 0 20px 15px rgb(93, 121, 131);
+        -webkit-transform: rotate(-6deg);
+        -moz-transform: rotate(-6deg);
+        transform: rotate(-6deg);
+        }
+        .shadow1:after{
+        -webkit-transform: rotate(6deg);
+        -moz-transform: rotate(6deg);
+        transform: rotate(6deg);
+        right: 15px;left: auto;
+        }
+
+
+        .more-details{
+            /* max-height:500px; */
+            height:500px;
+            overflow-y: auto;
+        }
+        .GB{
+            position: absolute;
+           
+              padding-top: 70px !important;
+              padding-right: 340px !important;
+          
+            /* padding-top:0px; */
+        }
+        .chart-pos{
+            padding-top:20px;
+            width:800px;
+           
+        }
+
+        /* chart style */
+        .elegantshadow {
+            /* width: 330px; */
+            color: #007bff;
+            
+            /* //background-color: #e7e5e4; */
+            /* letter-spacing: .15em; */
+            text-shadow: 
+            0 -1px 0 #fff, 
+            0 1px 0 #8b8b8b, 
+            0 2px 0 #8b8b8b, 
+            0 3px 0 #8b8b8b, 
+            0 4px 0 #8b8b8b, 
+            0 5px 0 #8b8b8b, 
+            0 6px 0 #8b8b8b, 
+            0 7px 0 #8b8b8b, 
+            0 8px 0 #8b8b8b, 
+            0 9px 0 #8b8b8b, 
+            0 10px 0 #8b8b8b, 
+            0 11px 0 #8b8b8b, 
+            0 12px 0 #8b8b8b, 
+            0 13px 0 #8b8b8b, 
+            0 14px 0 #8b8b8b, 
+            0 15px 0 #8b8b8b, 
+            0 22px 30px #8b8b8b;
+              /* -25px 50px 1px #dbdad9, 
+              -26px 52px 1px #dfdddc, 
+              -27px 54px 1px #e2e0df, 
+              -28px 56px 1px #e4e3e2; */
+          }
+
+          .label_criteria{
+            /* padding-left:40px; */
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            /* //font-size:40px !important; */
+            font-weight: bold;
+            font-size:33px;
+            line-height: 1.5;
+            padding-top:40px;
+            padding-left:40px;
+            color:#007bff;
+            height: 100px;
+            cursor: pointer;
+        }
+
+        .label_css{
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            font-size:33px;
+            font-weight: bold;
+            line-height: 1.5;
+            color:#007bff;
+            margin-left: 110px;
+            margin-top: 40px;
+            cursor: pointer;
+            
+        }
+        .ChartsCriteria{
+            display: none;
+            padding-bottom: 40px;
+        }
+        .ChartsVeiw{
+            padding-bottom: 40px;
+        }
+        
+        .toggleChart{
+            padding-right: 130px;
+            padding-top: 45px;
+        }
+        .generateChart{
+            padding-top: 45px; 
+        }
+        .shadow2{
+            padding-right: 10px;
+        }
+        
+        .ReportChart{
+            padding: 0px 100px;
+            padding-bottom: 100px;
+        }
+        .canvas1 {
+            height: 350px;
+        }
+        .canvas2 {
+            height: 350px;
+        }
+        .canvas3 {
+            height: 350px;
+        }
+        .canvas4 {
+            height: 350px;
+        }
+
+        
+        .agm-map {
+            height: 300px;
+          }

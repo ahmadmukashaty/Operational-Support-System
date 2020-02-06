@@ -1,0 +1,548 @@
+<ngx-loading [show]="loading" [config]="{backdropBorderRadius: '50px',fullScreenBackdrop:true }"></ngx-loading>
+<div>
+  <div class="page1-test">
+      <div class="row pad">
+          <div class="col-xs-1"></div>
+          <div class="col-xs-10">
+              <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
+          </div>
+          <div class="col-xs-1"></div>
+      </div>
+      <div class="row pad">
+          <div class="col-xs-1"></div>
+          <div class="col-xs-4">
+              <div class="tree_style box shadow1">
+                  <p-header>
+                      <div class="p-header-style">
+                          <span id="more-details" (click)="toggleOpenedSidebar2($event)">NE Tree
+                              <i id="narrow2" class="fa fa-angle-double-up" style="float: right;width: 20px;"></i>
+                              <br>
+                              <br>
+                          </span>
+                          <div style="padding-bottom:10px;">
+                              <span class="ui-float-label">
+                                  <input id="float-input" type="text" size="30" (keyup.enter)="SearchingNode($event)" [(ngModel)]="SearchInput" pInputText>
+                                  <label for="float-input">Searching...</label>
+                                  <button (click)="ClearF()">ClearFilter</button>
+                              </span>
+
+                          </div>
+
+                      </div>
+                  </p-header>
+
+                  <div id="more-detailss" [@mobileMenuTop]="isCollapsedSideBar2" class="more-details treeheight" [ngClass]="isCollapsedSideBar2"
+                      style="padding-left:30px; height:500px;width: 100%">
+                      <p-tree [value]="categories" [style]="{'background':'#f5ede3','overflow':'auto'}" selectionMode="single" [(selection)]="selectedRouter"
+                          (onNodeSelect)="nodeSelect($event)"></p-tree>
+                      <div style="margin-top: 8px">
+                          <!-- <button pButton type="button" label="Expand all" (click)="expandAll()" style="margin-right: .25em"></button>
+                          <button pButton type="button" label="Collapse all" (click)="collapseAll()"></button> -->
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-xs-6">
+              <div class="box shadow1">
+
+            
+                  <p-dataTable *ngIf="displayRadioNEAttr" [editable]="true" [value]="RanData" [rows]="13" [paginator]="true" [globalFilter]="gb"
+                  [(selection)]="selectedColumnsItems" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+                  responsive="true" exportFilename="NE_Details" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+                  #dt>
+                  <p-header>
+
+                      <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">Site Attributes</div>
+                      <br>
+                      <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                          <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                          <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                      </div>
+                      <br>
+                      <div class="ui-helper-clearfix">
+                          <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="Export" (click)="dt.exportCSV()"
+                              style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+
+                              <button pButton type="button" class="ui-button-Primary" label="View Site Identities" (click)="viewSiteIdentities()"
+                              style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                          <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+                      </div>
+                  </p-header>
+
+                  <p-column *ngFor="let col of SiteColunmns" [field]="col.field" [header]="col.header" [sortable]="true" [editable]="true">
+                  </p-column>
+              </p-dataTable>
+
+              <p-dataTable *ngIf="displayRadioIdentityAttr" [value]="IdentitiesData" [rows]="13" [paginator]="true" [globalFilter]="gb" [(selection)]="selectedColumnsItems"
+                  selectionMode="multiple" [metaKeySelection]="false" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+                  responsive="true" exportFilename="NES" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+                  #dt>
+                  <p-header>
+                      <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">Identities</div>
+                      <br>
+                      <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                          <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                          <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                      </div>
+                      <br>
+                      <div class="ui-helper-clearfix">
+                          <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="Site Identity" (click)="dt.exportCSV()"
+                              style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                          <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+                      </div>
+                  </p-header>
+
+                  <p-column *ngFor="let col of SiteIdentity" [field]="col.field" [header]="col.header" [sortable]="true">
+
+                  </p-column>
+                  <p-column styleClass="col-button" [style]="{'width': '150px'}">
+                      <ng-template let-col="rowData" pTemplate="body">
+                          <button (click)="navigateSiteIdentityToDetails(col.value)" pButton type="button" label="View Details" class="ui-button-info" style="float:right; cursor:pointer"></button>
+                      </ng-template>
+                  </p-column>
+              </p-dataTable>
+
+              <p-dataTable *ngIf="displayRadioCellsAttr" [value]="CellData" [rows]="13" [paginator]="true" [globalFilter]="gb" [(selection)]="selectedColumnsItems"
+              selectionMode="multiple" [metaKeySelection]="false" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+              responsive="true" exportFilename="Racks" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+              #dt>
+              <p-header>
+                  <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">Cells</div>
+                  <br>
+                  <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                      <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                      <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                  </div>
+                  <br>
+                  <div class="ui-helper-clearfix">
+                      <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="Export Cells" (click)="dt.exportCSV()"
+                          style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                      <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+                  </div>
+              </p-header>
+
+              <p-column *ngFor="let col of SiteCells" [field]="col.field" [header]="col.header" [sortable]="true">
+
+              </p-column>
+              <p-column styleClass="col-button" [style]="{'width': '150px'}">
+                  <ng-template let-col="rowData" pTemplate="body">
+                      <button (click)="navigateSiteCellToDetails(col.value)" pButton type="button" label="View Details" class="ui-button-info" style="float:right; cursor:pointer"></button>
+                  </ng-template>
+              </p-column>
+          </p-dataTable>
+
+          <p-dataTable *ngIf="displayRadioAntennasAttr" [value]="AntennaData" [rows]="13" [paginator]="true" [globalFilter]="gb" [(selection)]="selectedColumnsItems"
+          selectionMode="multiple" [metaKeySelection]="false" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+          responsive="true" exportFilename="Racks" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+          #dt>
+          <p-header>
+              <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">Antennas</div>
+              <br>
+              <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                  <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                  <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+              </div>
+              <br>
+              <div class="ui-helper-clearfix">
+                  <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="Export Racks" (click)="dt.exportCSV()"
+                      style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                  <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+              </div>
+          </p-header>
+
+          <p-column *ngFor="let col of SiteAntennas" [field]="col.field" [header]="col.header" [sortable]="true">
+
+          </p-column>
+          <p-column styleClass="col-button" [style]="{'width': '150px'}">
+              <ng-template let-col="rowData" pTemplate="body">
+                  <button (click)="navigateSiteAntennaToDetails(col.value)" pButton type="button" label="View Details" class="ui-button-info" style="float:right; cursor:pointer"></button>
+              </ng-template>
+          </p-column>
+      </p-dataTable>
+
+      <p-dataTable *ngIf="displayRadioHostVersionAttr" [value]="HostVersionData" [rows]="13" [paginator]="true" [globalFilter]="gb" [(selection)]="selectedColumnsItems"
+      selectionMode="multiple" [metaKeySelection]="false" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+      responsive="true" exportFilename="Racks" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+      #dt>
+      <p-header>
+          <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">Host Version</div>
+          <br>
+          <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+              <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+              <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+          </div>
+          <br>
+          <div class="ui-helper-clearfix">
+              <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="Export Racks" (click)="dt.exportCSV()"
+                  style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+              <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+          </div>
+      </p-header>
+
+      <p-column *ngFor="let col of SiteHostVersion" [field]="col.field" [header]="col.header" [sortable]="true">
+
+      </p-column>
+      <p-column styleClass="col-button" [style]="{'width': '150px'}">
+          <ng-template let-col="rowData" pTemplate="body">
+              <button (click)="navigateSiteHostVersionToDetails(col.value)" pButton type="button" label="View Details" class="ui-button-info" style="float:right; cursor:pointer"></button>
+          </ng-template>
+      </p-column>
+  </p-dataTable>
+
+              <p-dataTable *ngIf="displayRadioRackAttr" [value]="RackData" [rows]="13" [paginator]="true" [globalFilter]="gb" [(selection)]="selectedColumnsItems"
+                  selectionMode="multiple" [metaKeySelection]="false" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+                  responsive="true" exportFilename="NES" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+                  #dt>
+                  <p-header>
+                      <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">Racks</div>
+                      <br>
+                      <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                          <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                          <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                      </div>
+                      <br>
+                      <div class="ui-helper-clearfix">
+                          <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="Export Racks" (click)="dt.exportCSV()"
+                              style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                          <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+                      </div>
+                  </p-header>
+
+                  <p-column *ngFor="let col of SiteCols" [field]="col.field" [header]="col.header" [sortable]="true">
+
+                  </p-column>
+                  <p-column styleClass="col-button" [style]="{'width': '150px'}">
+                      <ng-template let-col="rowData" pTemplate="body">
+                          <button (click)="navigateSiteRackToDetails(col.value)" pButton type="button" label="View Details" class="ui-button-info" style="float:right; cursor:pointer"></button>
+                      </ng-template>
+                  </p-column>
+              </p-dataTable>
+              <p-dataTable *ngIf="displayRadioSubRackAttr" [value]="SubRackData" [rows]="13" [paginator]="true" [globalFilter]="gb" [(selection)]="selectedColumnsItems"
+                  selectionMode="multiple" [metaKeySelection]="false" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+                  responsive="true" exportFilename="NES" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+                  #dt>
+                  <p-header>
+                      <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">SubRacks</div>
+                      <br>
+                      <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                          <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                          <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                      </div>
+                      <br>
+                      <div class="ui-helper-clearfix">
+                          <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="Export SubRacks"
+                              (click)="dt.exportCSV()" style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                          <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+                      </div>
+                  </p-header>
+
+                  <p-column *ngFor="let col of SiteCols1" [field]="col.field" [header]="col.header" [sortable]="true">
+
+                  </p-column>
+                  <p-column styleClass="col-button" [style]="{'width': '150px'}">
+                      <ng-template let-col="rowData" pTemplate="body">
+                          <button (click)="navigateSiteSubRackToDetails(col.value)" pButton type="button" label="View Details" class="ui-button-info"
+                              style="float:right; cursor:pointer"></button>
+                      </ng-template>
+                  </p-column>
+              </p-dataTable>
+              <p-dataTable *ngIf="displayRadioSlotAttr" [value]="SlotData" [rows]="13" [paginator]="true" [globalFilter]="gb" [(selection)]="selectedColumnsItems"
+                  selectionMode="multiple" [metaKeySelection]="false" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+                  responsive="true" exportFilename="NES" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+                  #dt>
+                  <p-header>
+                      <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">Slots</div>
+                      <br>
+                      <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                          <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                          <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                      </div>
+                      <br>
+                      <div class="ui-helper-clearfix">
+                          <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="Export Slots" (click)="dt.exportCSV()"
+                              style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                          <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+
+                      </div>
+                  </p-header>
+
+                  <p-column *ngFor="let col of SiteCols2" [field]="col.field" [header]="col.header" [sortable]="true">
+
+                  </p-column>
+                  <p-column styleClass="col-button" [style]="{'width': '150px'}">
+                      <ng-template let-col="rowData" pTemplate="body">
+                          <button (click)="navigateSiteSlotToDetails(col.value)" pButton type="button" label="View Details" class="ui-button-info" style="float:right; cursor:pointer"></button>
+                      </ng-template>
+                  </p-column>
+              </p-dataTable>
+              <p-dataTable *ngIf="displayRadioBoardAttr" [value]="BoardData" [rows]="13" [paginator]="true" [globalFilter]="gb" [(selection)]="selectedColumnsItems"
+                  selectionMode="multiple" [metaKeySelection]="false" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+                  responsive="true" exportFilename="NES" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+                  #dt>
+                  <p-header>
+                      <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">Boards</div>
+                      <br>
+                      <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                          <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                          <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                      </div>
+                      <br>
+                      <div class="ui-helper-clearfix">
+                          <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="Export Boards" (click)="dt.exportCSV()"
+                              style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                          <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+
+                      </div>
+                  </p-header>
+
+                  <p-column *ngFor="let col of SiteCols3" [field]="col.field" [header]="col.header" [sortable]="true">
+
+                  </p-column>
+                  <p-column styleClass="col-button" [style]="{'width': '150px'}">
+                      <ng-template let-col="rowData" pTemplate="body">
+                          <button (click)="navigateSiteBoardToDetails(col.value)" pButton type="button" label="View Details" class="ui-button-info" style="float:right; cursor:pointer"></button>
+                      </ng-template>
+                  </p-column>
+              </p-dataTable>
+
+              <p-dataTable *ngIf="displayRadioPortAttr" [value]="PortData" [rows]="13" [paginator]="true" [globalFilter]="gb" [(selection)]="selectedColumnsItems"
+                  selectionMode="multiple" [metaKeySelection]="false" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+                  responsive="true" exportFilename="NES" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+                  #dt>
+                  <p-header>
+                      <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">Ports</div>
+                      <br>
+                      <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                          <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                          <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                      </div>
+                      <br>
+                      <div class="ui-helper-clearfix">
+                          <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="Export Ports"
+                              (click)="dt.exportCSV()" style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                          <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+                      </div>
+                  </p-header>
+
+                  <p-column *ngFor="let col of SiteCols4" [field]="col.field" [header]="col.header" [sortable]="true">
+
+                  </p-column>
+                  <p-column styleClass="col-button" [style]="{'width': '150px'}">
+                      <ng-template let-col="rowData" pTemplate="body">
+                          <button (click)="navigateSitePortToDetails(col.value)" pButton type="button" label="View Details" class="ui-button-info" style="float:right; cursor:pointer"></button>
+                      </ng-template>
+                  </p-column>
+              </p-dataTable>
+             
+<!--=========================================================================================================================================================-->
+
+                  <p-dataTable *ngIf="displayRanNEAttr" [editable]="true" [value]="RanData" [rows]="13" [paginator]="true" [globalFilter]="gb"
+                      [(selection)]="selectedColumnsItems" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+                      responsive="true" exportFilename="NE_Details" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+                      #dt>
+
+                      <p-header>
+
+                          <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">RAN NE Attributes</div>
+                          <br>
+                          <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                              <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                              <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                          </div>
+                          <br>
+                          <div class="ui-helper-clearfix">
+                              <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="Export" (click)="dt.exportCSV()"
+                                  style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                              <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+                          </div>
+                      </p-header>
+
+                      <p-column *ngFor="let col of ControlllerColunmns" [field]="col.field" [header]="col.header" [sortable]="true" [editable]="true">
+                      </p-column>
+                  </p-dataTable>
+
+                  <p-dataTable *ngIf="displayRanHostVersionAttr" [value]="HostVersionData" [rows]="13" [paginator]="true" [globalFilter]="gb" [(selection)]="selectedColumnsItems"
+                      selectionMode="multiple" [metaKeySelection]="false" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+                      responsive="true" exportFilename="Racks" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+                      #dt>
+                      <p-header>
+                          <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">Host Version</div>
+                          <br>
+                          <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                              <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                              <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                          </div>
+                          <br>
+                          <div class="ui-helper-clearfix">
+                              <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="Export Racks" (click)="dt.exportCSV()"
+                                  style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                              <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+                          </div>
+                      </p-header>
+
+                      <p-column *ngFor="let col of ControlllerHostVersion" [field]="col.field" [header]="col.header" [sortable]="true">
+
+                      </p-column>
+                      <p-column styleClass="col-button" [style]="{'width': '150px'}">
+                          <ng-template let-col="rowData" pTemplate="body">
+                              <button (click)="navigateControllerHostVersionToDetails(col.value)" pButton type="button" label="View Details" class="ui-button-info" style="float:right; cursor:pointer"></button>
+                          </ng-template>
+                      </p-column>
+                  </p-dataTable>
+
+                  <p-dataTable *ngIf="displayRanRackAttr" [value]="RackData" [rows]="13" [paginator]="true" [globalFilter]="gb" [(selection)]="selectedColumnsItems"
+                      selectionMode="multiple" [metaKeySelection]="false" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+                      responsive="true" exportFilename="Racks" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+                      #dt>
+                      <p-header>
+                          <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">Racks</div>
+                          <br>
+                          <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                              <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                              <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                          </div>
+                          <br>
+                          <div class="ui-helper-clearfix">
+                              <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="Export Racks" (click)="dt.exportCSV()"
+                                  style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                              <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+                          </div>
+                      </p-header>
+
+                      <p-column *ngFor="let col of ControlllerCols" [field]="col.field" [header]="col.header" [sortable]="true">
+
+                      </p-column>
+                      <p-column styleClass="col-button" [style]="{'width': '150px'}">
+                          <ng-template let-col="rowData" pTemplate="body">
+                              <button (click)="navigateControllerRackToDetails(col.value)" pButton type="button" label="View Details" class="ui-button-info" style="float:right; cursor:pointer"></button>
+                          </ng-template>
+                      </p-column>
+                  </p-dataTable>
+
+                  <p-dataTable *ngIf="displayRanSubRackAttr" [value]="SubRackData" [rows]="13" [paginator]="true" [globalFilter]="gb" [(selection)]="selectedColumnsItems"
+                      selectionMode="multiple" [metaKeySelection]="false" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+                      responsive="true" exportFilename="SubRacks" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+                      #dt>
+                      <p-header>
+                          <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">SubRacks</div>
+                          <br>
+                          <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                              <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                              <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                          </div>
+                          <br>
+                          <div class="ui-helper-clearfix">
+                              <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="Export SubRacks"
+                                  (click)="dt.exportCSV()" style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                              <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+                          </div>
+                      </p-header>
+
+                      <p-column *ngFor="let col of ControlllerCols1" [field]="col.field" [header]="col.header" [sortable]="true">
+
+                      </p-column>
+                      <p-column styleClass="col-button" [style]="{'width': '150px'}">
+                          <ng-template let-col="rowData" pTemplate="body">
+                              <button (click)="navigateControllerSubRackToDetails(col.value)" pButton type="button" label="View Details" class="ui-button-info"
+                                  style="float:right; cursor:pointer"></button>
+                          </ng-template>
+                      </p-column>
+                  </p-dataTable>
+
+                  <p-dataTable *ngIf="displayRanSlotAttr" [value]="SlotData" [rows]="13" [paginator]="true" [globalFilter]="gb" [(selection)]="selectedColumnsItems"
+                      selectionMode="multiple" [metaKeySelection]="false" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+                      responsive="true" exportFilename="Slots" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+                      #dt>
+                      <p-header>
+                          <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">Slots</div>
+                          <br>
+                          <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                              <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                              <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                          </div>
+                          <br>
+                          <div class="ui-helper-clearfix">
+                              <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="Export Slots" (click)="dt.exportCSV()"
+                                  style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                              <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+
+                          </div>
+                      </p-header>
+
+                      <p-column *ngFor="let col of ControlllerCols2" [field]="col.field" [header]="col.header" [sortable]="true">
+
+                      </p-column>
+                      <p-column styleClass="col-button" [style]="{'width': '150px'}">
+                          <ng-template let-col="rowData" pTemplate="body">
+                              <button (click)="navigateControllerSlotToDetails(col.value)" pButton type="button" label="View Details" class="ui-button-info" style="float:right; cursor:pointer"></button>
+                          </ng-template>
+                      </p-column>
+                  </p-dataTable>
+
+                  <p-dataTable *ngIf="displayRanBoardAttr" [value]="BoardData" [rows]="13" [paginator]="true" [globalFilter]="gb" [(selection)]="selectedColumnsItems"
+                      selectionMode="multiple" [metaKeySelection]="false" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+                      responsive="true" exportFilename="Boards" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+                      #dt>
+                      <p-header>
+                          <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">Boards</div>
+                          <br>
+                          <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                              <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                              <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                          </div>
+                          <br>
+                          <div class="ui-helper-clearfix">
+                              <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="Export Boards" (click)="dt.exportCSV()"
+                                  style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                              <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+
+                          </div>
+                      </p-header>
+
+                      <p-column *ngFor="let col of ControlllerCols3" [field]="col.field" [header]="col.header" [sortable]="true">
+
+                      </p-column>
+                      <p-column styleClass="col-button" [style]="{'width': '150px'}">
+                          <ng-template let-col="rowData" pTemplate="body">
+                              <button (click)="navigateControllerBoardToDetails(col.value)" pButton type="button" label="View Details" class="ui-button-info" style="float:right; cursor:pointer"></button>
+                          </ng-template>
+                      </p-column>
+                  </p-dataTable>
+
+                  <p-dataTable *ngIf="displayRanPortAttr" [value]="PortData" [rows]="13" [paginator]="true" [globalFilter]="gb" [(selection)]="selectedColumnsItems"
+                      selectionMode="multiple" [metaKeySelection]="false" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+                      responsive="true" exportFilename="Ports" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+                      #dt>
+                      <p-header>
+                          <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">Ports</div>
+                          <br>
+                          <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                              <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                              <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                          </div>
+                          <br>
+                          <div class="ui-helper-clearfix">
+                              <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="Export Ports"
+                                  (click)="dt.exportCSV()" style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                              <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+                          </div>
+                      </p-header>
+
+                      <p-column *ngFor="let col of ControlllerCols4" [field]="col.field" [header]="col.header" [sortable]="true">
+
+                      </p-column>
+                      <p-column styleClass="col-button" [style]="{'width': '150px'}">
+                          <ng-template let-col="rowData" pTemplate="body">
+                              <button (click)="navigateControllerPortToDetails(col.value)" pButton type="button" label="View Details" class="ui-button-info" style="float:right; cursor:pointer"></button>
+                          </ng-template>
+                      </p-column>
+                  </p-dataTable>
+                 
+                 
+              </div>
+          </div>
+          <div class="col-xs-1"></div>
+      </div>
+
+  </div>
+</div>

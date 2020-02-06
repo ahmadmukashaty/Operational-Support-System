@@ -1,0 +1,162 @@
+<ngx-loading [show]="loading" [config]="{backdropBorderRadius: '50px',fullScreenBackdrop:true }"></ngx-loading>
+
+<div class="page1-test">
+    <div class="col-xs-12">
+      <div class="col-xs-3 filter-pos" style="float:left;padding-top: 45px; padding-left: 20px;">
+        <div class="tree_style box shadow1">
+                <p-header>
+                <div class="p-header-style">
+                    <span id="more-details" (click)="toggleOpenedSidebar($event)">Location and Site Filter
+                        <i id="narrow" class="fa fa-angle-double-up" style="float:right;width:20px;"></i> <br> <br>
+                    </span>
+                </div>
+            </p-header>
+            <div [@mobileMenuTop]="isCollapsedSideBar" id="more-detailss" class="more-details"  [ngClass]="isCollapsedSideBar">
+                    <span class="col-x-1 header_loc" style="margin-left:1px; vertical-align:center; padding-left: 140px;">Location Filters:</span> <br><br>
+                    
+                    <div class="row">
+                            <label class="col-x-1" style="vertical-align:left; padding-left:50px;">Region: </label>
+                            <div class="col-x-1" style="padding-left:60px;">
+                                    <p-dropdown [options]="Region" [(ngModel)]="selectedRegion" [style]="{'width':'180px'}" filter="true" placeholder="Select Region" (onChange)="RegionSelect($event)" >
+                                            <ng-template let-item pTemplate="selectedItem">
+                                               
+                                                <span style="vertical-align:middle">{{item.label}}</span>
+                                            </ng-template>
+                                            <ng-template let-region pTemplate="item">
+                                                <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                                                  
+                                                    <div style="font-size:14px;float:right;margin-top:4px">{{region.label}}</div>
+                                                </div>
+                                            </ng-template>
+                                        </p-dropdown>
+                            </div>              
+                    </div>
+                        <br>
+                        <div class="row">
+                                <label style="vertical-align:left;padding-left:50px;" class="col-x-1">Area: </label>
+                                <div class="col-x-1" style="padding-left:72px">
+                                        <p-dropdown [options]="Area" [(ngModel)]="selectedArea" [style]="{'width':'180px'}" filter="true" placeholder="Select Area"  (onChange)="AreaSelect($event)">
+                                                <ng-template let-item1 pTemplate="selectedItem">
+                                                   
+                                                    <span style="vertical-align:middle">{{item1.label}}</span>
+                                                </ng-template>
+                                                <ng-template let-area pTemplate="item1">
+                                                    <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                                                       
+                                                        <div style="font-size:14px;float:right;margin-top:4px">{{area.label}}</div>
+                                                    </div>
+                                                </ng-template>
+                                            </p-dropdown>
+                                </div>
+                        </div>   
+                        <br>
+                        <div class="row">
+                                <label style="vertical-align:left;padding-left:50px;" class="col-x-1">Zone: </label>
+                            <div class="col-x-1" style="padding-left:72px">
+                                    <p-dropdown [options]="Zones" [(ngModel)]="selectedZone" [style]="{'width':'180px'}" filter="true" placeholder="Select Zone" disabled="{{ DisableZone }}" (onChange)="ZoneSelect($event)">
+                                            <ng-template let-item2 pTemplate="selectedItem">
+                                                
+                                                <span style="vertical-align:middle">{{item2.label}}</span>
+                                            </ng-template>
+                                            <ng-template let-zone pTemplate="item2">
+                                                <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                                                   
+                                                    <div style="font-size:14px;float:right;margin-top:4px">{{zone.label}}</div>
+                                                </div>
+                                            </ng-template>
+                                        </p-dropdown>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                                <label style="vertical-align:left;padding-left:50px;" class="col-x-1">SubArea: </label>
+                                <div class="col-x-1" style="padding-left:44px">
+                                        <p-dropdown [options]="SubAreas" [(ngModel)]="selectedSubArea" [style]="{'width':'180px'}" filter="true" placeholder="Select Sub Area" disabled="{{ DisableSubArea }}" (onChange)="SubAreaSelect($event)">
+                                                <ng-template let-item3 pTemplate="selectedItem">
+                                                   
+                                                    <span style="vertical-align:middle">{{item3.label}}</span>
+                                                </ng-template>
+                                                <ng-template let-subarea pTemplate="item3">
+                                                    <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                                                      
+                                                        <div style="font-size:14px;float:right;margin-top:4px">{{subarea.label}}</div>
+                                                    </div>
+                                                </ng-template>
+                                            </p-dropdown>
+                                </div>
+                        </div>  
+                    <br> <br>                     
+                <span class="col-x-1" style="margin-left:1px;">Site Filters:</span>
+                        <br> <br>
+                        <div class="row">
+                                <label style="vertical-align:left;padding-left:50px;" class="col-x-1">Site Code: </label>
+                                <div class="col-x-1" style="padding-left:36px">
+                                        <p-dropdown [options]="SitesCodes" [(ngModel)]="selectedSiteCode" [style]="{'width':'180px'}" filter="true" placeholder="Select Site Code" (onChange)="SiteCodeSelect($event)">
+                                                <ng-template let-item4 pTemplate="selectedItem">
+                                                   
+                                                    <span style="vertical-align:middle">{{item4.label}}</span>
+                                                </ng-template>
+                                                <ng-template let-sitecode pTemplate="item4">
+                                                    <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                                                        
+                                                        <div style="font-size:14px;float:right;margin-top:4px">{{sitecode.label}}</div>
+                                                    </div>
+                                                </ng-template>
+                                        </p-dropdown>
+                                </div>
+                        </div>
+                        <br>
+                        <div class="row" style="padding-bottom: 50px;">
+                                <label style="vertical-align:left;padding-left:50px;" class="col-x-1">Site Name: </label>
+                                <div class="col-x-1" style="padding-left:30px">
+                                        <p-dropdown [options]="SitesNames" [(ngModel)]="selectedSiteName" [style]="{'width':'180px'}" filter="true" placeholder="Select Site Name" (onChange)="SiteNameSelect($event)">
+                                                <ng-template let-item5 pTemplate="selectedItem">
+
+                                                    <span style="vertical-align:middle">{{item5.label}}</span>
+                                                </ng-template>
+                                                <ng-template let-sitename pTemplate="item5">
+                                                    <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                                                       
+                                                        <div style="font-size:14px;float:right;margin-top:4px">{{sitename.label}}</div>
+                                                    </div>
+                                                </ng-template>
+                                        </p-dropdown>
+                                </div>
+                        </div>   
+  
+            </div>    
+
+        </div>   
+
+</div>
+
+
+ <!-- <div class="row" style="margin-left:10px;margin-right:10px;">-->
+
+     <div class="col-xs-9"  style ="float:right;">
+      
+       <div class="row">
+            <button pButton type="button" class="hover-btn" label="Draw All Sites" (click)="DrawSites()" 
+            style="background-color: #58a3d0; color:white; float:right; margin-left:100px;margin-top:20px; padding-bottom: 10px;" icon="fa fa-map-marker"></button>
+            <button pButton type="button" class="hover-btn" label="Clear Sites" (click)="ClearSites()" 
+            style="background-color: #58a3d0; color:white; float:right; margin-right:50px; margin-top:20px;" icon="fa fa-trash"></button>
+        </div>  
+
+          <agm-map [latitude]="lat" [longitude]="lng" [fullscreenControl]='true' [mapTypeControl]='true' [mapTypeId]="mapType" style="padding-top: 10px;">        
+            <agm-marker 
+                    *ngFor="let data of site_list" 
+                    
+                    [latitude]="ConvertString(data.LATITUDE_N)" 
+                    [longitude]="ConvertString(data.LONGITUDE_E)"
+                    >
+            </agm-marker> 
+            <!--   <agm-circle [latitude]="lat + 0.3" [longitude]="lng" 
+            [radius]="500"
+            [fillColor]="'red'"
+            [circleDraggable]="true"
+            [editable]="true">
+        </agm-circle>-->
+          </agm-map>
+     </div>
+</div>
+</div>

@@ -1,0 +1,957 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="12.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="MW_BOARD">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="TYPE_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="SLOT_ID" Type="varchar2" MaxLength="255" />
+          <Property Name="SOFTWARE_VERSION" Type="varchar2" MaxLength="255" />
+          <Property Name="HARDWARE_VERSION" Type="varchar2" MaxLength="255" />
+          <Property Name="BIOS_VERSION" Type="varchar2" MaxLength="255" />
+          <Property Name="FPGA_VERSION" Type="varchar2" MaxLength="255" />
+          <Property Name="SERIAL_NUMBER" Type="varchar2" MaxLength="255" />
+          <Property Name="BOM_ITEM" Type="varchar2" MaxLength="255" />
+          <Property Name="BARCODE" Type="varchar2" MaxLength="255" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="255" />
+          <Property Name="MANUFACTURE_DATE" Type="timestamp" Precision="6" />
+          <Property Name="REMARK" Type="varchar2" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="MW_BOARD_TYPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="NAME" Type="varchar2" MaxLength="255" />
+          <Property Name="TYPE" Type="varchar2" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="MW_NE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="TYPE_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="NE_ID" Type="varchar2" MaxLength="30" />
+          <Property Name="U2000_REF_ID" Type="varchar2" MaxLength="255" />
+          <Property Name="NAME" Type="varchar2" MaxLength="255" />
+          <Property Name="SUBRACK_TYPE" Type="varchar2" MaxLength="255" />
+          <Property Name="GATEWAY_TYPE" Type="varchar2" MaxLength="255" />
+          <Property Name="IP" Type="varchar2" MaxLength="255" />
+          <Property Name="MAC_ADDRESS" Type="varchar2" MaxLength="255" />
+          <Property Name="SOFTWARE_VERSION" Type="varchar2" MaxLength="255" />
+          <Property Name="PATCH_VERSION" Type="varchar2" MaxLength="255" />
+          <Property Name="LSR_ID" Type="varchar2" MaxLength="30" />
+          <Property Name="REMARKS" Type="varchar2" MaxLength="255" />
+          <Property Name="DEPLOYMENT_STATUS" Type="number" Precision="10" Scale="0" />
+          <Property Name="CREATE_DATE" Type="timestamp" Precision="6" />
+          <Property Name="SITE_MODEL" Type="varchar2" MaxLength="30" />
+          <Property Name="TERMINAL_CLASS" Type="varchar2" MaxLength="30" />
+          <Property Name="SUB_CATEGORY_ID" Type="number" Precision="10" Scale="0" />
+        </EntityType>
+        <EntityType Name="MW_NE_BOARD">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="PARENT_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="CHILD_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="CREATE_DATE" Type="timestamp" Precision="6" />
+          <Property Name="RETIRE_DATE" Type="timestamp" Precision="6" />
+        </EntityType>
+        <EntityType Name="MW_NE_SITE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="NE_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="SITE_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="CREATE_DATE" Type="timestamp" Precision="6" Nullable="false" />
+          <Property Name="RETIRE_DATE" Type="timestamp" Precision="6" />
+          <Property Name="TYPE" Type="varchar2" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MW_NE_TYPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="TYPE" Type="varchar2" MaxLength="255" />
+          <Property Name="SERIES" Type="varchar2" MaxLength="255" />
+          <Property Name="VENDOR" Type="varchar2" MaxLength="255" />
+          <Property Name="CLASS" Type="varchar2" MaxLength="255" />
+          <Property Name="MAX_BRD_NMB" Type="number" Precision="10" Scale="0" />
+        </EntityType>
+        <EntityType Name="MW_PORT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="TYPE_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="PORT_ID" Type="number" Precision="10" Scale="0" />
+          <Property Name="PORT_NAME" Type="varchar2" MaxLength="255" />
+          <Property Name="PORT_LEVEL" Type="varchar2" MaxLength="255" />
+          <Property Name="RATE_BPS" Type="varchar2" MaxLength="255" />
+          <Property Name="DEPLOYMENT_STATUS" Type="number" Precision="10" Scale="0" />
+          <Property Name="REMARK" Type="varchar2" MaxLength="255" />
+          <Property Name="PARENT_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MW_PORT_SFP">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="PARENT_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="CHILD_ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="CREATE_DATE" Type="timestamp" Precision="6" />
+          <Property Name="RETIRE_DATE" Type="timestamp" Precision="6" />
+        </EntityType>
+        <EntityType Name="MW_PORT_TYPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="TYPE" Type="varchar2" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="MW_SFP">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="TYPE" Type="varchar2" MaxLength="55" />
+          <Property Name="SERIAL_NUMBER" Type="varchar2" MaxLength="255" />
+          <Property Name="CLEI_CODE" Type="varchar2" MaxLength="255" />
+          <Property Name="FIBER_CABLE_TYPE" Type="varchar2" MaxLength="35" />
+          <Property Name="BOM_CODE" Type="varchar2" MaxLength="255" />
+          <Property Name="MANUFACTURER" Type="varchar2" MaxLength="255" />
+          <Property Name="MANUFACTURE_DATE" Type="timestamp" Precision="6" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="MW_SUBRACK_TYPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="TYPE" Type="varchar2" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RIM_CATEGORY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Name" Type="varchar2" MaxLength="200" />
+          <Property Name="MODULE_NAME" Type="varchar2" MaxLength="200" />
+          <Property Name="ORDER_NUM" Type="number" Precision="10" Scale="0" />
+          <Property Name="Structure" Type="varchar2" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="RIM_SUBCATEGORY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="NAME" Type="varchar2" MaxLength="200" />
+          <Property Name="PARENT_ID" Type="number" Precision="10" Scale="0" />
+          <Property Name="CATEGORY_ID" Type="number" Precision="10" Scale="0" />
+          <Property Name="ORDER" Type="number" Precision="10" Scale="0" />
+        </EntityType>
+        <EntityType Name="SITE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="CODE" Type="varchar2" MaxLength="10" />
+          <Property Name="ENGLISH_NAME" Type="varchar2" MaxLength="100" />
+          <Property Name="REGION" Type="varchar2" MaxLength="100" />
+          <Property Name="AREA" Type="varchar2" MaxLength="100" />
+          <Property Name="ZONE" Type="varchar2" MaxLength="100" />
+          <Property Name="SUBAREA" Type="varchar2" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_MW_NE_BOARD_BOARD">
+          <End Role="MW_BOARD" Type="Self.MW_BOARD" Multiplicity="1" />
+          <End Role="MW_NE_BOARD" Type="Self.MW_NE_BOARD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MW_BOARD">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MW_NE_BOARD">
+              <PropertyRef Name="CHILD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MW_NE_BOARD_REF_NE">
+          <End Role="MW_NE" Type="Self.MW_NE" Multiplicity="1" />
+          <End Role="MW_NE_BOARD" Type="Self.MW_NE_BOARD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MW_NE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MW_NE_BOARD">
+              <PropertyRef Name="PARENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MW_NE_MW_NE_TYPE_1">
+          <End Role="MW_NE_TYPE" Type="Self.MW_NE_TYPE" Multiplicity="1" />
+          <End Role="MW_NE" Type="Self.MW_NE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MW_NE_TYPE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MW_NE">
+              <PropertyRef Name="TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MW_NE_SITE_REF_NE">
+          <End Role="MW_NE" Type="Self.MW_NE" Multiplicity="1" />
+          <End Role="MW_NE_SITE" Type="Self.MW_NE_SITE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MW_NE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MW_NE_SITE">
+              <PropertyRef Name="NE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MW_NE_SITE_REF_SITE">
+          <End Role="SITE" Type="Self.SITE" Multiplicity="1" />
+          <End Role="MW_NE_SITE" Type="Self.MW_NE_SITE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SITE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MW_NE_SITE">
+              <PropertyRef Name="SITE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MW_PORT_MW_BOARD_1">
+          <End Role="MW_BOARD" Type="Self.MW_BOARD" Multiplicity="1" />
+          <End Role="MW_PORT" Type="Self.MW_PORT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MW_BOARD">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MW_PORT">
+              <PropertyRef Name="PARENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MW_PORT_MW_PORT_TYPE_1">
+          <End Role="MW_PORT_TYPE" Type="Self.MW_PORT_TYPE" Multiplicity="1" />
+          <End Role="MW_PORT" Type="Self.MW_PORT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MW_PORT_TYPE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MW_PORT">
+              <PropertyRef Name="TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MW_PORT_SFP_REF_PORT">
+          <End Role="MW_PORT" Type="Self.MW_PORT" Multiplicity="1" />
+          <End Role="MW_PORT_SFP" Type="Self.MW_PORT_SFP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MW_PORT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MW_PORT_SFP">
+              <PropertyRef Name="PARENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MW_PORT_SFP_REF_SFP">
+          <End Role="MW_SFP" Type="Self.MW_SFP" Multiplicity="1" />
+          <End Role="MW_PORT_SFP" Type="Self.MW_PORT_SFP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MW_SFP">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MW_PORT_SFP">
+              <PropertyRef Name="CHILD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MW_SUB_CATEGORY_ID">
+          <End Role="RIM_SUBCATEGORY" Type="Self.RIM_SUBCATEGORY" Multiplicity="0..1" />
+          <End Role="MW_NE" Type="Self.MW_NE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RIM_SUBCATEGORY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MW_NE">
+              <PropertyRef Name="SUB_CATEGORY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RIM_SUBCATEORY_REFERENCE_CATEGORY">
+          <End Role="RIM_CATEGORY" Type="Self.RIM_CATEGORY" Multiplicity="0..1" />
+          <End Role="RIM_SUBCATEGORY" Type="Self.RIM_SUBCATEGORY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RIM_CATEGORY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RIM_SUBCATEGORY">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="MW_BOARD" EntityType="Self.MW_BOARD" Schema="OSS_TEST" store:Type="Tables" />
+          <EntitySet Name="MW_BOARD_TYPE" EntityType="Self.MW_BOARD_TYPE" Schema="OSS_TEST" store:Type="Tables" />
+          <EntitySet Name="MW_NE" EntityType="Self.MW_NE" Schema="OSS_TEST" store:Type="Tables" />
+          <EntitySet Name="MW_NE_BOARD" EntityType="Self.MW_NE_BOARD" Schema="OSS_TEST" store:Type="Tables" />
+          <EntitySet Name="MW_NE_SITE" EntityType="Self.MW_NE_SITE" Schema="OSS_TEST" store:Type="Tables" />
+          <EntitySet Name="MW_NE_TYPE" EntityType="Self.MW_NE_TYPE" Schema="OSS_TEST" store:Type="Tables" />
+          <EntitySet Name="MW_PORT" EntityType="Self.MW_PORT" Schema="OSS_TEST" store:Type="Tables" />
+          <EntitySet Name="MW_PORT_SFP" EntityType="Self.MW_PORT_SFP" Schema="OSS_TEST" store:Type="Tables" />
+          <EntitySet Name="MW_PORT_TYPE" EntityType="Self.MW_PORT_TYPE" Schema="OSS_TEST" store:Type="Tables" />
+          <EntitySet Name="MW_SFP" EntityType="Self.MW_SFP" Schema="OSS_TEST" store:Type="Tables" />
+          <EntitySet Name="MW_SUBRACK_TYPE" EntityType="Self.MW_SUBRACK_TYPE" Schema="OSS_TEST" store:Type="Tables" />
+          <EntitySet Name="RIM_CATEGORY" EntityType="Self.RIM_CATEGORY" Schema="OSS_TEST" store:Type="Tables" />
+          <EntitySet Name="RIM_SUBCATEGORY" EntityType="Self.RIM_SUBCATEGORY" Schema="OSS_TEST" store:Type="Tables" />
+          <EntitySet Name="SITE" EntityType="Self.SITE" Schema="OSS_TEST" store:Type="Tables" />
+          <AssociationSet Name="FK_MW_NE_BOARD_BOARD" Association="Self.FK_MW_NE_BOARD_BOARD">
+            <End Role="MW_BOARD" EntitySet="MW_BOARD" />
+            <End Role="MW_NE_BOARD" EntitySet="MW_NE_BOARD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MW_NE_BOARD_REF_NE" Association="Self.FK_MW_NE_BOARD_REF_NE">
+            <End Role="MW_NE" EntitySet="MW_NE" />
+            <End Role="MW_NE_BOARD" EntitySet="MW_NE_BOARD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MW_NE_MW_NE_TYPE_1" Association="Self.FK_MW_NE_MW_NE_TYPE_1">
+            <End Role="MW_NE_TYPE" EntitySet="MW_NE_TYPE" />
+            <End Role="MW_NE" EntitySet="MW_NE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MW_NE_SITE_REF_NE" Association="Self.FK_MW_NE_SITE_REF_NE">
+            <End Role="MW_NE" EntitySet="MW_NE" />
+            <End Role="MW_NE_SITE" EntitySet="MW_NE_SITE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MW_NE_SITE_REF_SITE" Association="Self.FK_MW_NE_SITE_REF_SITE">
+            <End Role="SITE" EntitySet="SITE" />
+            <End Role="MW_NE_SITE" EntitySet="MW_NE_SITE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MW_PORT_MW_BOARD_1" Association="Self.FK_MW_PORT_MW_BOARD_1">
+            <End Role="MW_BOARD" EntitySet="MW_BOARD" />
+            <End Role="MW_PORT" EntitySet="MW_PORT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MW_PORT_MW_PORT_TYPE_1" Association="Self.FK_MW_PORT_MW_PORT_TYPE_1">
+            <End Role="MW_PORT_TYPE" EntitySet="MW_PORT_TYPE" />
+            <End Role="MW_PORT" EntitySet="MW_PORT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MW_PORT_SFP_REF_PORT" Association="Self.FK_MW_PORT_SFP_REF_PORT">
+            <End Role="MW_PORT" EntitySet="MW_PORT" />
+            <End Role="MW_PORT_SFP" EntitySet="MW_PORT_SFP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MW_PORT_SFP_REF_SFP" Association="Self.FK_MW_PORT_SFP_REF_SFP">
+            <End Role="MW_SFP" EntitySet="MW_SFP" />
+            <End Role="MW_PORT_SFP" EntitySet="MW_PORT_SFP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MW_SUB_CATEGORY_ID" Association="Self.FK_MW_SUB_CATEGORY_ID">
+            <End Role="RIM_SUBCATEGORY" EntitySet="RIM_SUBCATEGORY" />
+            <End Role="MW_NE" EntitySet="MW_NE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RIM_SUBCATEORY_REFERENCE_CATEGORY" Association="Self.FK_RIM_SUBCATEORY_REFERENCE_CATEGORY">
+            <End Role="RIM_CATEGORY" EntitySet="RIM_CATEGORY" />
+            <End Role="RIM_SUBCATEGORY" EntitySet="RIM_SUBCATEGORY" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="MW_BOARD">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="TYPE_ID" Type="Int32" Nullable="false" />
+          <Property Name="SLOT_ID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SOFTWARE_VERSION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="HARDWARE_VERSION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="BIOS_VERSION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FPGA_VERSION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SERIAL_NUMBER" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="BOM_ITEM" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="BARCODE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="MANUFACTURE_DATE" Type="DateTime" Precision="6" />
+          <Property Name="REMARK" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MW_NE_BOARD" Relationship="Self.FK_MW_NE_BOARD_BOARD" FromRole="MW_BOARD" ToRole="MW_NE_BOARD" />
+          <NavigationProperty Name="MW_PORT" Relationship="Self.FK_MW_PORT_MW_BOARD_1" FromRole="MW_BOARD" ToRole="MW_PORT" />
+        </EntityType>
+        <EntityType Name="MW_BOARD_TYPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MW_NE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="TYPE_ID" Type="Int32" Nullable="false" />
+          <Property Name="NE_ID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="U2000_REF_ID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SUBRACK_TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="GATEWAY_TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="IP" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="MAC_ADDRESS" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SOFTWARE_VERSION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PATCH_VERSION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="LSR_ID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="REMARKS" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DEPLOYMENT_STATUS" Type="Int32" />
+          <Property Name="CREATE_DATE" Type="DateTime" Precision="6" />
+          <Property Name="SITE_MODEL" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="TERMINAL_CLASS" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SUB_CATEGORY_ID" Type="Int32" />
+          <NavigationProperty Name="MW_NE_BOARD" Relationship="Self.FK_MW_NE_BOARD_REF_NE" FromRole="MW_NE" ToRole="MW_NE_BOARD" />
+          <NavigationProperty Name="MW_NE_TYPE" Relationship="Self.FK_MW_NE_MW_NE_TYPE_1" FromRole="MW_NE" ToRole="MW_NE_TYPE" />
+          <NavigationProperty Name="MW_NE_SITE" Relationship="Self.FK_MW_NE_SITE_REF_NE" FromRole="MW_NE" ToRole="MW_NE_SITE" />
+          <NavigationProperty Name="RIM_SUBCATEGORY" Relationship="Self.FK_MW_SUB_CATEGORY_ID" FromRole="MW_NE" ToRole="RIM_SUBCATEGORY" />
+        </EntityType>
+        <EntityType Name="MW_NE_BOARD">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="PARENT_ID" Type="Int32" Nullable="false" />
+          <Property Name="CHILD_ID" Type="Int32" Nullable="false" />
+          <Property Name="CREATE_DATE" Type="DateTime" Precision="6" />
+          <Property Name="RETIRE_DATE" Type="DateTime" Precision="6" />
+          <NavigationProperty Name="MW_BOARD" Relationship="Self.FK_MW_NE_BOARD_BOARD" FromRole="MW_NE_BOARD" ToRole="MW_BOARD" />
+          <NavigationProperty Name="MW_NE" Relationship="Self.FK_MW_NE_BOARD_REF_NE" FromRole="MW_NE_BOARD" ToRole="MW_NE" />
+        </EntityType>
+        <EntityType Name="MW_NE_SITE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NE_ID" Type="Int32" Nullable="false" />
+          <Property Name="SITE_ID" Type="Int32" Nullable="false" />
+          <Property Name="CREATE_DATE" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="RETIRE_DATE" Type="DateTime" Precision="6" />
+          <Property Name="TYPE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="MW_NE" Relationship="Self.FK_MW_NE_SITE_REF_NE" FromRole="MW_NE_SITE" ToRole="MW_NE" />
+          <NavigationProperty Name="SITE" Relationship="Self.FK_MW_NE_SITE_REF_SITE" FromRole="MW_NE_SITE" ToRole="SITE" />
+        </EntityType>
+        <EntityType Name="MW_NE_TYPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SERIES" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="VENDOR" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CLASS" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="MAX_BRD_NMB" Type="Int32" />
+          <NavigationProperty Name="MW_NE" Relationship="Self.FK_MW_NE_MW_NE_TYPE_1" FromRole="MW_NE_TYPE" ToRole="MW_NE" />
+        </EntityType>
+        <EntityType Name="MW_PORT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="TYPE_ID" Type="Int32" Nullable="false" />
+          <Property Name="PORT_ID" Type="Int32" />
+          <Property Name="PORT_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PORT_LEVEL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="RATE_BPS" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DEPLOYMENT_STATUS" Type="Int32" />
+          <Property Name="REMARK" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PARENT_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MW_BOARD" Relationship="Self.FK_MW_PORT_MW_BOARD_1" FromRole="MW_PORT" ToRole="MW_BOARD" />
+          <NavigationProperty Name="MW_PORT_TYPE" Relationship="Self.FK_MW_PORT_MW_PORT_TYPE_1" FromRole="MW_PORT" ToRole="MW_PORT_TYPE" />
+          <NavigationProperty Name="MW_PORT_SFP" Relationship="Self.FK_MW_PORT_SFP_REF_PORT" FromRole="MW_PORT" ToRole="MW_PORT_SFP" />
+        </EntityType>
+        <EntityType Name="MW_PORT_SFP">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="PARENT_ID" Type="Int32" Nullable="false" />
+          <Property Name="CHILD_ID" Type="Int32" Nullable="false" />
+          <Property Name="CREATE_DATE" Type="DateTime" Precision="6" />
+          <Property Name="RETIRE_DATE" Type="DateTime" Precision="6" />
+          <NavigationProperty Name="MW_PORT" Relationship="Self.FK_MW_PORT_SFP_REF_PORT" FromRole="MW_PORT_SFP" ToRole="MW_PORT" />
+          <NavigationProperty Name="MW_SFP" Relationship="Self.FK_MW_PORT_SFP_REF_SFP" FromRole="MW_PORT_SFP" ToRole="MW_SFP" />
+        </EntityType>
+        <EntityType Name="MW_PORT_TYPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MW_PORT" Relationship="Self.FK_MW_PORT_MW_PORT_TYPE_1" FromRole="MW_PORT_TYPE" ToRole="MW_PORT" />
+        </EntityType>
+        <EntityType Name="MW_SFP">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="TYPE" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="SERIAL_NUMBER" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CLEI_CODE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FIBER_CABLE_TYPE" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="BOM_CODE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="MANUFACTURER" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="MANUFACTURE_DATE" Type="DateTime" Precision="6" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MW_PORT_SFP" Relationship="Self.FK_MW_PORT_SFP_REF_SFP" FromRole="MW_SFP" ToRole="MW_PORT_SFP" />
+        </EntityType>
+        <EntityType Name="MW_SUBRACK_TYPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RIM_CATEGORY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="MODULE_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ORDER_NUM" Type="Int32" />
+          <Property Name="Structure" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RIM_SUBCATEGORY" Relationship="Self.FK_RIM_SUBCATEORY_REFERENCE_CATEGORY" FromRole="RIM_CATEGORY" ToRole="RIM_SUBCATEGORY" />
+        </EntityType>
+        <EntityType Name="RIM_SUBCATEGORY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PARENT_ID" Type="Int32" />
+          <Property Name="CATEGORY_ID" Type="Int32" />
+          <Property Name="ORDER" Type="Int32" />
+          <NavigationProperty Name="MW_NE" Relationship="Self.FK_MW_SUB_CATEGORY_ID" FromRole="RIM_SUBCATEGORY" ToRole="MW_NE" />
+          <NavigationProperty Name="RIM_CATEGORY" Relationship="Self.FK_RIM_SUBCATEORY_REFERENCE_CATEGORY" FromRole="RIM_SUBCATEGORY" ToRole="RIM_CATEGORY" />
+        </EntityType>
+        <EntityType Name="SITE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="CODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ENGLISH_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="REGION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AREA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ZONE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SUBAREA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MW_NE_SITE" Relationship="Self.FK_MW_NE_SITE_REF_SITE" FromRole="SITE" ToRole="MW_NE_SITE" />
+        </EntityType>
+        <Association Name="FK_MW_NE_BOARD_BOARD">
+          <End Role="MW_BOARD" Type="Self.MW_BOARD" Multiplicity="1" />
+          <End Role="MW_NE_BOARD" Type="Self.MW_NE_BOARD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MW_BOARD">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MW_NE_BOARD">
+              <PropertyRef Name="CHILD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MW_PORT_MW_BOARD_1">
+          <End Role="MW_BOARD" Type="Self.MW_BOARD" Multiplicity="1" />
+          <End Role="MW_PORT" Type="Self.MW_PORT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MW_BOARD">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MW_PORT">
+              <PropertyRef Name="PARENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MW_NE_BOARD_REF_NE">
+          <End Role="MW_NE" Type="Self.MW_NE" Multiplicity="1" />
+          <End Role="MW_NE_BOARD" Type="Self.MW_NE_BOARD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MW_NE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MW_NE_BOARD">
+              <PropertyRef Name="PARENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MW_NE_MW_NE_TYPE_1">
+          <End Role="MW_NE_TYPE" Type="Self.MW_NE_TYPE" Multiplicity="1" />
+          <End Role="MW_NE" Type="Self.MW_NE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MW_NE_TYPE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MW_NE">
+              <PropertyRef Name="TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MW_NE_SITE_REF_NE">
+          <End Role="MW_NE" Type="Self.MW_NE" Multiplicity="1" />
+          <End Role="MW_NE_SITE" Type="Self.MW_NE_SITE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MW_NE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MW_NE_SITE">
+              <PropertyRef Name="NE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MW_SUB_CATEGORY_ID">
+          <End Role="RIM_SUBCATEGORY" Type="Self.RIM_SUBCATEGORY" Multiplicity="0..1" />
+          <End Role="MW_NE" Type="Self.MW_NE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RIM_SUBCATEGORY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MW_NE">
+              <PropertyRef Name="SUB_CATEGORY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MW_NE_SITE_REF_SITE">
+          <End Role="SITE" Type="Self.SITE" Multiplicity="1" />
+          <End Role="MW_NE_SITE" Type="Self.MW_NE_SITE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SITE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MW_NE_SITE">
+              <PropertyRef Name="SITE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MW_PORT_MW_PORT_TYPE_1">
+          <End Role="MW_PORT_TYPE" Type="Self.MW_PORT_TYPE" Multiplicity="1" />
+          <End Role="MW_PORT" Type="Self.MW_PORT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MW_PORT_TYPE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MW_PORT">
+              <PropertyRef Name="TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MW_PORT_SFP_REF_PORT">
+          <End Role="MW_PORT" Type="Self.MW_PORT" Multiplicity="1" />
+          <End Role="MW_PORT_SFP" Type="Self.MW_PORT_SFP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MW_PORT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MW_PORT_SFP">
+              <PropertyRef Name="PARENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MW_PORT_SFP_REF_SFP">
+          <End Role="MW_SFP" Type="Self.MW_SFP" Multiplicity="1" />
+          <End Role="MW_PORT_SFP" Type="Self.MW_PORT_SFP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MW_SFP">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MW_PORT_SFP">
+              <PropertyRef Name="CHILD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RIM_SUBCATEORY_REFERENCE_CATEGORY">
+          <End Role="RIM_CATEGORY" Type="Self.RIM_CATEGORY" Multiplicity="0..1" />
+          <End Role="RIM_SUBCATEGORY" Type="Self.RIM_SUBCATEGORY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RIM_CATEGORY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RIM_SUBCATEGORY">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MW_BOARD" EntityType="Self.MW_BOARD" />
+          <EntitySet Name="MW_BOARD_TYPE" EntityType="Self.MW_BOARD_TYPE" />
+          <EntitySet Name="MW_NE" EntityType="Self.MW_NE" />
+          <EntitySet Name="MW_NE_BOARD" EntityType="Self.MW_NE_BOARD" />
+          <EntitySet Name="MW_NE_SITE" EntityType="Self.MW_NE_SITE" />
+          <EntitySet Name="MW_NE_TYPE" EntityType="Self.MW_NE_TYPE" />
+          <EntitySet Name="MW_PORT" EntityType="Self.MW_PORT" />
+          <EntitySet Name="MW_PORT_SFP" EntityType="Self.MW_PORT_SFP" />
+          <EntitySet Name="MW_PORT_TYPE" EntityType="Self.MW_PORT_TYPE" />
+          <EntitySet Name="MW_SFP" EntityType="Self.MW_SFP" />
+          <EntitySet Name="MW_SUBRACK_TYPE" EntityType="Self.MW_SUBRACK_TYPE" />
+          <EntitySet Name="RIM_CATEGORY" EntityType="Self.RIM_CATEGORY" />
+          <EntitySet Name="RIM_SUBCATEGORY" EntityType="Self.RIM_SUBCATEGORY" />
+          <EntitySet Name="SITEs" EntityType="Self.SITE" />
+          <AssociationSet Name="FK_MW_NE_BOARD_BOARD" Association="Self.FK_MW_NE_BOARD_BOARD">
+            <End Role="MW_BOARD" EntitySet="MW_BOARD" />
+            <End Role="MW_NE_BOARD" EntitySet="MW_NE_BOARD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MW_PORT_MW_BOARD_1" Association="Self.FK_MW_PORT_MW_BOARD_1">
+            <End Role="MW_BOARD" EntitySet="MW_BOARD" />
+            <End Role="MW_PORT" EntitySet="MW_PORT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MW_NE_BOARD_REF_NE" Association="Self.FK_MW_NE_BOARD_REF_NE">
+            <End Role="MW_NE" EntitySet="MW_NE" />
+            <End Role="MW_NE_BOARD" EntitySet="MW_NE_BOARD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MW_NE_MW_NE_TYPE_1" Association="Self.FK_MW_NE_MW_NE_TYPE_1">
+            <End Role="MW_NE_TYPE" EntitySet="MW_NE_TYPE" />
+            <End Role="MW_NE" EntitySet="MW_NE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MW_NE_SITE_REF_NE" Association="Self.FK_MW_NE_SITE_REF_NE">
+            <End Role="MW_NE" EntitySet="MW_NE" />
+            <End Role="MW_NE_SITE" EntitySet="MW_NE_SITE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MW_SUB_CATEGORY_ID" Association="Self.FK_MW_SUB_CATEGORY_ID">
+            <End Role="RIM_SUBCATEGORY" EntitySet="RIM_SUBCATEGORY" />
+            <End Role="MW_NE" EntitySet="MW_NE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MW_NE_SITE_REF_SITE" Association="Self.FK_MW_NE_SITE_REF_SITE">
+            <End Role="SITE" EntitySet="SITEs" />
+            <End Role="MW_NE_SITE" EntitySet="MW_NE_SITE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MW_PORT_MW_PORT_TYPE_1" Association="Self.FK_MW_PORT_MW_PORT_TYPE_1">
+            <End Role="MW_PORT_TYPE" EntitySet="MW_PORT_TYPE" />
+            <End Role="MW_PORT" EntitySet="MW_PORT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MW_PORT_SFP_REF_PORT" Association="Self.FK_MW_PORT_SFP_REF_PORT">
+            <End Role="MW_PORT" EntitySet="MW_PORT" />
+            <End Role="MW_PORT_SFP" EntitySet="MW_PORT_SFP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MW_PORT_SFP_REF_SFP" Association="Self.FK_MW_PORT_SFP_REF_SFP">
+            <End Role="MW_SFP" EntitySet="MW_SFP" />
+            <End Role="MW_PORT_SFP" EntitySet="MW_PORT_SFP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RIM_SUBCATEORY_REFERENCE_CATEGORY" Association="Self.FK_RIM_SUBCATEORY_REFERENCE_CATEGORY">
+            <End Role="RIM_CATEGORY" EntitySet="RIM_CATEGORY" />
+            <End Role="RIM_SUBCATEGORY" EntitySet="RIM_SUBCATEGORY" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities3">
+          <EntitySetMapping Name="MW_BOARD">
+            <EntityTypeMapping TypeName="Model.MW_BOARD">
+              <MappingFragment StoreEntitySet="MW_BOARD">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TYPE_ID" ColumnName="TYPE_ID" />
+                <ScalarProperty Name="SLOT_ID" ColumnName="SLOT_ID" />
+                <ScalarProperty Name="SOFTWARE_VERSION" ColumnName="SOFTWARE_VERSION" />
+                <ScalarProperty Name="HARDWARE_VERSION" ColumnName="HARDWARE_VERSION" />
+                <ScalarProperty Name="BIOS_VERSION" ColumnName="BIOS_VERSION" />
+                <ScalarProperty Name="FPGA_VERSION" ColumnName="FPGA_VERSION" />
+                <ScalarProperty Name="SERIAL_NUMBER" ColumnName="SERIAL_NUMBER" />
+                <ScalarProperty Name="BOM_ITEM" ColumnName="BOM_ITEM" />
+                <ScalarProperty Name="BARCODE" ColumnName="BARCODE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="MANUFACTURE_DATE" ColumnName="MANUFACTURE_DATE" />
+                <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MW_BOARD_TYPE">
+            <EntityTypeMapping TypeName="Model.MW_BOARD_TYPE">
+              <MappingFragment StoreEntitySet="MW_BOARD_TYPE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MW_NE">
+            <EntityTypeMapping TypeName="Model.MW_NE">
+              <MappingFragment StoreEntitySet="MW_NE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TYPE_ID" ColumnName="TYPE_ID" />
+                <ScalarProperty Name="NE_ID" ColumnName="NE_ID" />
+                <ScalarProperty Name="U2000_REF_ID" ColumnName="U2000_REF_ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="SUBRACK_TYPE" ColumnName="SUBRACK_TYPE" />
+                <ScalarProperty Name="GATEWAY_TYPE" ColumnName="GATEWAY_TYPE" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="MAC_ADDRESS" ColumnName="MAC_ADDRESS" />
+                <ScalarProperty Name="SOFTWARE_VERSION" ColumnName="SOFTWARE_VERSION" />
+                <ScalarProperty Name="PATCH_VERSION" ColumnName="PATCH_VERSION" />
+                <ScalarProperty Name="LSR_ID" ColumnName="LSR_ID" />
+                <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+                <ScalarProperty Name="DEPLOYMENT_STATUS" ColumnName="DEPLOYMENT_STATUS" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="SITE_MODEL" ColumnName="SITE_MODEL" />
+                <ScalarProperty Name="TERMINAL_CLASS" ColumnName="TERMINAL_CLASS" />
+                <ScalarProperty Name="SUB_CATEGORY_ID" ColumnName="SUB_CATEGORY_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MW_NE_BOARD">
+            <EntityTypeMapping TypeName="Model.MW_NE_BOARD">
+              <MappingFragment StoreEntitySet="MW_NE_BOARD">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+                <ScalarProperty Name="CHILD_ID" ColumnName="CHILD_ID" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="RETIRE_DATE" ColumnName="RETIRE_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MW_NE_SITE">
+            <EntityTypeMapping TypeName="Model.MW_NE_SITE">
+              <MappingFragment StoreEntitySet="MW_NE_SITE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NE_ID" ColumnName="NE_ID" />
+                <ScalarProperty Name="SITE_ID" ColumnName="SITE_ID" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="RETIRE_DATE" ColumnName="RETIRE_DATE" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MW_NE_TYPE">
+            <EntityTypeMapping TypeName="Model.MW_NE_TYPE">
+              <MappingFragment StoreEntitySet="MW_NE_TYPE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="SERIES" ColumnName="SERIES" />
+                <ScalarProperty Name="VENDOR" ColumnName="VENDOR" />
+                <ScalarProperty Name="CLASS" ColumnName="CLASS" />
+                <ScalarProperty Name="MAX_BRD_NMB" ColumnName="MAX_BRD_NMB" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MW_PORT">
+            <EntityTypeMapping TypeName="Model.MW_PORT">
+              <MappingFragment StoreEntitySet="MW_PORT">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TYPE_ID" ColumnName="TYPE_ID" />
+                <ScalarProperty Name="PORT_ID" ColumnName="PORT_ID" />
+                <ScalarProperty Name="PORT_NAME" ColumnName="PORT_NAME" />
+                <ScalarProperty Name="PORT_LEVEL" ColumnName="PORT_LEVEL" />
+                <ScalarProperty Name="RATE_BPS" ColumnName="RATE_BPS" />
+                <ScalarProperty Name="DEPLOYMENT_STATUS" ColumnName="DEPLOYMENT_STATUS" />
+                <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MW_PORT_SFP">
+            <EntityTypeMapping TypeName="Model.MW_PORT_SFP">
+              <MappingFragment StoreEntitySet="MW_PORT_SFP">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+                <ScalarProperty Name="CHILD_ID" ColumnName="CHILD_ID" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="RETIRE_DATE" ColumnName="RETIRE_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MW_PORT_TYPE">
+            <EntityTypeMapping TypeName="Model.MW_PORT_TYPE">
+              <MappingFragment StoreEntitySet="MW_PORT_TYPE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MW_SFP">
+            <EntityTypeMapping TypeName="Model.MW_SFP">
+              <MappingFragment StoreEntitySet="MW_SFP">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="SERIAL_NUMBER" ColumnName="SERIAL_NUMBER" />
+                <ScalarProperty Name="CLEI_CODE" ColumnName="CLEI_CODE" />
+                <ScalarProperty Name="FIBER_CABLE_TYPE" ColumnName="FIBER_CABLE_TYPE" />
+                <ScalarProperty Name="BOM_CODE" ColumnName="BOM_CODE" />
+                <ScalarProperty Name="MANUFACTURER" ColumnName="MANUFACTURER" />
+                <ScalarProperty Name="MANUFACTURE_DATE" ColumnName="MANUFACTURE_DATE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MW_SUBRACK_TYPE">
+            <EntityTypeMapping TypeName="Model.MW_SUBRACK_TYPE">
+              <MappingFragment StoreEntitySet="MW_SUBRACK_TYPE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RIM_CATEGORY">
+            <EntityTypeMapping TypeName="Model.RIM_CATEGORY">
+              <MappingFragment StoreEntitySet="RIM_CATEGORY">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MODULE_NAME" ColumnName="MODULE_NAME" />
+                <ScalarProperty Name="ORDER_NUM" ColumnName="ORDER_NUM" />
+                <ScalarProperty Name="Structure" ColumnName="Structure" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RIM_SUBCATEGORY">
+            <EntityTypeMapping TypeName="Model.RIM_SUBCATEGORY">
+              <MappingFragment StoreEntitySet="RIM_SUBCATEGORY">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+                <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+                <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SITEs">
+            <EntityTypeMapping TypeName="Model.SITE">
+              <MappingFragment StoreEntitySet="SITE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="ENGLISH_NAME" ColumnName="ENGLISH_NAME" />
+                <ScalarProperty Name="REGION" ColumnName="REGION" />
+                <ScalarProperty Name="AREA" ColumnName="AREA" />
+                <ScalarProperty Name="ZONE" ColumnName="ZONE" />
+                <ScalarProperty Name="SUBAREA" ColumnName="SUBAREA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

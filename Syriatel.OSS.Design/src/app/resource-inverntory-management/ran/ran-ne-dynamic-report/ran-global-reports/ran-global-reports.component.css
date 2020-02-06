@@ -1,0 +1,117 @@
+.cat{
+    height:280px;
+    
+}
+.filterTabel1{
+    padding-top:70px;
+}
+.search{
+    padding-top:20px;
+}
+.p-header-style{
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    padding-left:10px;
+    padding-top:10px;
+}
+.tree_style.box.shadow1 {
+    width: 400px;
+    
+    /* height: 300px; */
+    margin-left: 170px;
+    margin-top: 70px;
+    /* max-height:300px; */
+    
+}
+.tree_style{
+    padding-left:0px !important;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    /* max-height:500px !important; */
+}
+.box{
+    /* width:40%; */
+   
+    border-radius:5px;  
+    
+    background:#f5ede3 !important;
+    }
+    .shadow1{
+        position:relative;
+        box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+        }
+       
+        /*****************************************************************dashed border
+        ****************************************************************/
+        
+        /****************************************************************
+        *styling shadows
+        ****************************************************************/
+        .shadow1:before, .shadow1:after{
+        position:absolute;
+        content:"";
+        bottom:12px;left:15px;top:80%;
+        width:45%;
+        background:rgb(93, 121, 131);
+        z-index:-1;
+        -webkit-box-shadow: 0 20px 15px rgb(93, 121, 131);
+        -moz-box-shadow: 0 20px 15px rgb(93, 121, 131);
+        box-shadow: 0 20px 15px rgb(93, 121, 131);
+        -webkit-transform: rotate(-6deg);
+        -moz-transform: rotate(-6deg);
+        transform: rotate(-6deg);
+        }
+        .shadow1:after{
+        -webkit-transform: rotate(6deg);
+        -moz-transform: rotate(6deg);
+        transform: rotate(6deg);
+        right: 15px;left: auto;
+        }
+
+
+        .more-details{
+            /* max-height:500px; */
+            height:500px;
+            overflow-y: auto;
+        }
+        .drop_position{
+            
+            margin-top:10px !important;
+        }
+        /* header_loc{
+            margin-left:30px;
+        } */
+        .auto-select-pos{
+            padding-top:20px !important;
+        }
+
+
+        .example-form {
+            min-width: 150px;
+            max-width: 500px;
+            width: 100%;
+          }
+          
+          .example-full-width {
+            width: 100%;
+          }
+          
+
+          .filter-pos.col-x-2 {
+            margin-left: 20px !important;
+          }
+
+          .report-pos{
+              padding-top:50px;
+              padding-bottom: 50px;
+          }
+
+          .GB{
+              position: absolute;
+             
+                padding-top: 0px !important;
+                padding-right: 140px !important;
+            
+              /* padding-top:0px; */
+          }
+          /* div#more-detailss {
+            overflow-x: hidden;
+        } */

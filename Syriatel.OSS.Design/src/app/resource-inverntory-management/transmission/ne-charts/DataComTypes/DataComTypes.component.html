@@ -1,0 +1,8 @@
+<canvas baseChart width="700" height="320"
+                          [datasets]="bChartData"
+                          [labels]="bChartLabels"
+                          [options]="bChartOptions"
+                          [legend]="bChartLegend"
+                          [chartType]="bChartType"
+                          (chartHover)="chartHovered($event)"
+                          (chartClick)="chartClicked($event)"></canvas>

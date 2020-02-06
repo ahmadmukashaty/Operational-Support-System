@@ -1,0 +1,288 @@
+/* ------------------Transmission CSS Classes------------------------ */
+.trans-img-ngClass{
+  background-image: url("../../../assets/images/final.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%; 
+}
+
+
+
+@import '../../../assets/css/googleapis-3.css';
+.trans_cssmenu,
+.trans_cssmenu ul,
+.trans_cssmenu ul li,
+.trans_cssmenu ul li a {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  list-style: none;
+  line-height: 1;
+  display: block;
+  position: relative;
+  
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.trans_cssmenu:after,
+.trans_cssmenu > ul:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.trans_cssmenu {
+  width: auto;
+  font-family: Raleway, sans-serif;
+  line-height: 1;
+}
+.trans_cssmenu ul {
+  background: #ffffff;
+}
+.trans_cssmenu > ul > li {
+  float: left;
+}
+.trans_cssmenu.align-center > ul {
+  font-size: 0;
+  text-align: center;
+}
+.trans_cssmenu.align-center > ul > li {
+  display: inline-block;
+  float: none;
+}
+.trans_cssmenu.align-right > ul > li {
+  float: right;
+}
+.trans_cssmenu.align-right > ul > li > a {
+  margin-right: 0;
+  margin-left: -4px;
+}
+.trans_cssmenu > ul > li > a {
+  z-index: 2;
+  padding: 18px 25px 12px 25px;
+  font-size: 15px;
+  font-weight: 400;
+  text-decoration: none;
+  color: #444444;
+  -webkit-transition: all .2s ease;
+  -moz-transition: all .2s ease;
+  -ms-transition: all .2s ease;
+  -o-transition: all .2s ease;
+  transition: all .2s ease;
+  margin-right: -4px;
+}
+.trans_cssmenu > ul > li.active > a,
+.trans_cssmenu > ul > li:hover > a,
+.trans_cssmenu > ul > li > a:hover {
+  color: #ffffff;
+}
+.trans_cssmenu > ul > li > a:after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  width: 100%;
+  height: 120%;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  content: "";
+  -webkit-transition: all .2s ease;
+  -o-transition: all .2s ease;
+  transition: all .2s ease;
+  -webkit-transform: perspective(5px) rotateX(2deg);
+  -webkit-transform-origin: bottom;
+  -moz-transform: perspective(5px) rotateX(2deg);
+  -moz-transform-origin: bottom;
+  transform: perspective(5px) rotateX(2deg);
+  transform-origin: bottom;
+}
+.trans_cssmenu > ul > li.active > a:after{
+  background: #9ca3ad !important;
+  
+    
+}
+.trans_cssmenu > ul > li.active > a{
+  color :#f8fafa !important;
+}
+.trans_cssmenu > ul > li:hover > a:after{
+    background:#f3e9db !important;
+}
+.trans_cssmenu > ul > li:hover > a{
+  color:black !important;
+}
+
+.trans_cssmenu > ul > li > a:after{
+  background:#00b1ba !important;
+}
+.trans_cssmenu{
+  background-color: rgba(255, 255, 255, 0) !important;
+}
+.trans_cssmenu ul{
+    background-color: rgba(255, 255, 255, 0);
+    padding-left: 50px;
+}
+
+/* -------------RAN CSS Classes------------- */
+
+.ran-img-ngClass{
+  background-image: url("../../../assets/images/RanTelecomOSS.png");
+  background-repeat: no-repeat;
+  background-size: 100% 101%; 
+}
+
+@import '../../../assets/css/googleapis-3.css';
+.ran_cssmenu,
+.ran_cssmenu ul,
+.ran_cssmenu ul li,
+.ran_cssmenu ul li a {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  list-style: none;
+  line-height: 1;
+  display: block;
+  position: relative;
+  
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.ran_cssmenu:after,
+.ran_cssmenu > ul:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.ran_cssmenu {
+  width: auto;
+  font-family: Raleway, sans-serif;
+  line-height: 1;
+}
+.ran_cssmenu ul {
+  background: #ffffff;
+}
+.ran_cssmenu > ul > li {
+  float: left;
+}
+.ran_cssmenu.align-center > ul {
+  font-size: 0;
+  text-align: center;
+}
+.ran_cssmenu.align-center > ul > li {
+  display: inline-block;
+  float: none;
+}
+.ran_cssmenu.align-right > ul > li {
+  float: right;
+}
+.ran_cssmenu.align-right > ul > li > a {
+  margin-right: 0;
+  margin-left: -4px;
+}
+.ran_cssmenu > ul > li > a {
+  z-index: 2;
+  padding: 18px 25px 12px 25px;
+  font-size: 15px;
+  font-weight: 400;
+  text-decoration: none;
+  color: #444444;
+  -webkit-transition: all .2s ease;
+  -moz-transition: all .2s ease;
+  -ms-transition: all .2s ease;
+  -o-transition: all .2s ease;
+  transition: all .2s ease;
+  margin-right: -4px;
+}
+.ran_cssmenu > ul > li.active > a,
+.ran_cssmenu > ul > li:hover > a,
+.ran_cssmenu > ul > li > a:hover {
+  color: #ffffff;
+}
+.ran_cssmenu > ul > li > a:after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  width: 100%;
+  height: 120%;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  content: "";
+  -webkit-transition: all .2s ease;
+  -o-transition: all .2s ease;
+  transition: all .2s ease;
+  -webkit-transform: perspective(5px) rotateX(2deg);
+  -webkit-transform-origin: bottom;
+  -moz-transform: perspective(5px) rotateX(2deg);
+  -moz-transform-origin: bottom;
+  transform: perspective(5px) rotateX(2deg);
+  transform-origin: bottom;
+}
+.ran_cssmenu > ul > li.active > a:after{
+  background: #9ca3ad !important;
+  
+    
+}
+.ran_cssmenu > ul > li.active > a{
+  color :#f8fafa !important;
+}
+.ran_cssmenu > ul > li:hover > a:after{
+    background:rgb(190, 216, 243) !important;
+}
+.ran_cssmenu > ul > li:hover > a{
+  color:black !important;
+}
+
+.ran_cssmenu > ul > li > a:after{
+ /* background:#b400ba !important;*/
+  background: #206ab3 !important;
+  
+}
+.ran_cssmenu{
+  background-color: rgba(255, 255, 255, 0) !important;
+}
+.ran_cssmenu ul{
+    background-color: rgba(255, 255, 255, 0);
+    padding-left: 50px;
+}
+
+
+
+/* --------both (transmission/ran)---------- */
+.tab_style{
+  
+   color:rgb(255, 255, 255) !important;
+   font-size: 18px !important;
+   outline: none !important;
+  
+ }
+
+div ul li {
+  font-family: Georgia, serif;
+}
+
+.t{
+  position: relative;
+}
+
+.pos{
+  padding-top: 20px;
+}
+@media (max-width: 1700px) {
+  .logoStyle{
+    padding-left:50px;
+    padding-top:10px;
+    
+  }
+}
+
+
+
+

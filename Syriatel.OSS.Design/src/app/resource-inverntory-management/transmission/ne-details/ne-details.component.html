@@ -1,0 +1,490 @@
+
+<div>
+    <div class="page1-test">
+        <div class="row pad">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10">
+                <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
+            </div>
+            <div class="col-xs-1"></div>
+        </div>
+        <div class="row pad">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-4">
+                <div class="tree_style box shadow1">
+                    <p-header>
+                        <div class="p-header-style">
+                            <span id="more-details" (click)="toggleOpenedSidebar2($event)">NE Tree
+                                <i id="narrow2" class="fa fa-angle-double-up" style="float: right;width: 20px;"></i>
+                                <br>
+                                <br>
+                            </span>
+                            <div style="padding-bottom:10px;">
+                                <span class="ui-float-label">
+                                    <input id="float-input" type="text" size="30" (keyup.enter)="SearchingNode($event)" [(ngModel)]="SearchInput" pInputText>
+                                    <label for="float-input">Searching...</label>
+                                    <button (click)="ClearF()">ClearFilter</button>
+                                </span>
+
+                            </div>
+
+                        </div>
+                    </p-header>
+
+                    <div id="more-detailss" [@mobileMenuTop]="isCollapsedSideBar2" class="more-details treeheight" [ngClass]="isCollapsedSideBar2"
+                        style="padding-left:30px; height:500px;width: 100%">
+                        <p-tree [value]="categories" [style]="{'background':'#f5ede3','overflow':'auto'}" selectionMode="single" [(selection)]="selectedRouter"
+                            (onNodeSelect)="nodeSelect($event)" [loading]="loading"></p-tree>
+                        <div style="margin-top: 8px">
+                            <button pButton type="button" label="Expand all" (click)="expandAll()" style="margin-right: .25em"></button>
+                            <button pButton type="button" label="Collapse all" (click)="collapseAll()"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="box shadow1">
+                    <p-dataTable *ngIf="displayRouterAttr" [editable]="true" [value]="RouterData" [rows]="13" [paginator]="true" [globalFilter]="gb"
+                        [(selection)]="selectedColumnsItems" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+                        responsive="true" exportFilename="NE_Details" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+                        #dt>
+
+                        <p-header>
+
+                            <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">Network Element Attributes</div>
+                            <br>
+                            <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                                <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                                <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                            </div>
+                            <br>
+                            <div class="ui-helper-clearfix">
+                                <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="Details Data" (click)="dt.exportCSV()"
+                                    style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                                <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+                            </div>
+
+                        </p-header>
+
+                        <p-column *ngFor="let col of cols1" [field]="col.field" [header]="col.header" [sortable]="true" [editable]="true">
+                        </p-column>
+                    </p-dataTable>
+                    <p-dataTable *ngIf="displayBoardAttr" [value]="BoardData" [rows]="13" [paginator]="true" [globalFilter]="gb" [(selection)]="selectedColumnsItems"
+                        selectionMode="multiple" [metaKeySelection]="false" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+                        responsive="true" exportFilename="NES" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+                        #dt>
+                        <p-header>
+                            <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">Datacom Router Boards</div>
+                            <br>
+                            <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                                <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                                <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                            </div>
+                            <br>
+                            <div class="ui-helper-clearfix">
+                                <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="Router Boards" (click)="dt.exportCSV()"
+                                    style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                                <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+                            </div>
+                        </p-header>
+
+                        <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header" [sortable]="true">
+
+                        </p-column>
+                        <p-column styleClass="col-button" [style]="{'width': '150px'}">
+                            <ng-template let-col="rowData" pTemplate="body">
+                                <button (click)="navigateToDetails(col.value)" pButton type="button" label="View Details" class="ui-button-info" style="float:right; cursor:pointer"></button>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+                    <p-dataTable *ngIf="displaySubBoardAttr" [value]="SubBoardData" [rows]="13" [paginator]="true" [globalFilter]="gb" [(selection)]="selectedColumnsItems"
+                        selectionMode="multiple" [metaKeySelection]="false" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+                        responsive="true" exportFilename="NES" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+                        #dt>
+                        <p-header>
+                            <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">Datacom Router SubBoards</div>
+                            <br>
+                            <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                                <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                                <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                            </div>
+                            <br>
+                            <div class="ui-helper-clearfix">
+                                <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="Router SubBoards"
+                                    (click)="dt.exportCSV()" style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                                <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+                            </div>
+                        </p-header>
+
+                        <p-column *ngFor="let col of cols2" [field]="col.field" [header]="col.header" [sortable]="true">
+
+                        </p-column>
+                        <p-column styleClass="col-button" [style]="{'width': '150px'}">
+                            <ng-template let-col="rowData" pTemplate="body">
+                                <button (click)="navigateSubBoardToDetails(col.value)" pButton type="button" label="View Details" class="ui-button-info"
+                                    style="float:right; cursor:pointer"></button>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+                    <p-dataTable *ngIf="displayPortAttr" [value]="PortData" [rows]="13" [paginator]="true" [globalFilter]="gb" [(selection)]="selectedColumnsItems"
+                        selectionMode="multiple" [metaKeySelection]="false" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+                        responsive="true" exportFilename="NES" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+                        #dt>
+                        <p-header>
+                            <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">Datacom Router Boards</div>
+                            <br>
+                            <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                                <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                                <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                            </div>
+                            <br>
+                            <div class="ui-helper-clearfix">
+                                <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="Router Ports" (click)="dt.exportCSV()"
+                                    style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                                <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+
+                            </div>
+                        </p-header>
+
+                        <p-column *ngFor="let col of cols3" [field]="col.field" [header]="col.header" [sortable]="true">
+
+                        </p-column>
+                        <p-column styleClass="col-button" [style]="{'width': '150px'}">
+                            <ng-template let-col="rowData" pTemplate="body">
+                                <button (click)="navigatePortToDetails(col.value)" pButton type="button" label="View Details" class="ui-button-info" style="float:right; cursor:pointer"></button>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+                    <p-dataTable *ngIf="displaysfpAttr" [value]="SfpData" [rows]="13" [paginator]="true" [globalFilter]="gb" [(selection)]="selectedColumnsItems"
+                        selectionMode="multiple" [metaKeySelection]="false" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+                        responsive="true" exportFilename="NES" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+                        #dt>
+                        <p-header>
+                            <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">Router SFPs</div>
+                            <br>
+                            <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                                <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                                <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                            </div>
+                            <br>
+                            <div class="ui-helper-clearfix">
+                                <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="Router SFPs" (click)="dt.exportCSV()"
+                                    style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                                <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+
+                            </div>
+                        </p-header>
+
+                        <p-column *ngFor="let col of cols4" [field]="col.field" [header]="col.header" [sortable]="true">
+
+                        </p-column>
+                        <p-column styleClass="col-button" [style]="{'width': '150px'}">
+                            <ng-template let-col="rowData" pTemplate="body">
+                                <button (click)="navigateSfpToDetails(col.value)" pButton type="button" label="View Details" class="ui-button-info" style="float:right; cursor:pointer"></button>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+
+                    <!-- MW -->
+                    <p-dataTable *ngIf="displayMWBoardAttr" [value]="BoardData" [rows]="13" [paginator]="true" [globalFilter]="gb" [(selection)]="selectedColumnsItems"
+                        selectionMode="multiple" [metaKeySelection]="false" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+                        responsive="true" exportFilename="NES" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+                        #dt>
+                        <p-header>
+                            <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">MW Router Boards</div>
+                            <br>
+                            <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                                <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                                <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                            </div>
+                            <br>
+                            <div class="ui-helper-clearfix">
+                                <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="MW Router Boards"
+                                    (click)="dt.exportCSV()" style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                                <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+                            </div>
+                        </p-header>
+
+                        <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header" [sortable]="true">
+
+                        </p-column>
+                        <p-column styleClass="col-button" [style]="{'width': '150px'}">
+                            <ng-template let-col="rowData" pTemplate="body">
+                                <button (click)="navigateMWBoardToDetails(col.value)" pButton type="button" label="View Details" class="ui-button-info" style="float:right; cursor:pointer"></button>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+                    <p-dataTable *ngIf="displayMWPortAttr" [value]="PortData" [rows]="13" [paginator]="true" [globalFilter]="gb" [(selection)]="selectedColumnsItems"
+                        selectionMode="multiple" [metaKeySelection]="false" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+                        responsive="true" exportFilename="NES" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+                        #dt>
+                        <p-header>
+                            <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">MW Router Ports</div>
+                            <br>
+                            <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                                <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                                <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                            </div>
+                            <br>
+                            <div class="ui-helper-clearfix">
+                                <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="MW Router Ports" (click)="dt.exportCSV()"
+                                    style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                                <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+
+                            </div>
+                        </p-header>
+
+                        <p-column *ngFor="let col of cols3" [field]="col.field" [header]="col.header" [sortable]="true">
+
+                        </p-column>
+                        <p-column styleClass="col-button" [style]="{'width': '150px'}">
+                            <ng-template let-col="rowData" pTemplate="body">
+                                <button (click)="navigateMWPortToDetails(col.value)" pButton type="button" label="View Details" class="ui-button-info" style="float:right; cursor:pointer"></button>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+
+                    <p-dataTable *ngIf="displayMWPSfpAttr" [value]="SfpData" [rows]="13" [paginator]="true" [globalFilter]="gb" [(selection)]="selectedColumnsItems"
+                        selectionMode="multiple" [metaKeySelection]="false" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+                        responsive="true" exportFilename="NES" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+                        #dt>
+                        <p-header>
+                            <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">MW Router SFPs</div>
+                            <br>
+                            <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                                <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                                <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                            </div>
+                            <br>
+                            <div class="ui-helper-clearfix">
+                                <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="MW Router SFPs" (click)="dt.exportCSV()"
+                                    style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                                <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+
+                            </div>
+                        </p-header>
+
+                        <p-column *ngFor="let col of cols4" [field]="col.field" [header]="col.header" [sortable]="true">
+
+                        </p-column>
+                        <p-column styleClass="col-button" [style]="{'width': '150px'}">
+                            <ng-template let-col="rowData" pTemplate="body">
+                                <button (click)="navigateMWsfpToDetails(col.value)" pButton type="button" label="View Details" class="ui-button-info" style="float:right; cursor:pointer"></button>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+
+                    <!-- Optical -->
+                    <p-dataTable *ngIf="displayOPSubRackAttr" [value]="BoardData" [rows]="13" [paginator]="true" [globalFilter]="gb" [(selection)]="selectedColumnsItems"
+                        selectionMode="multiple" [metaKeySelection]="false" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+                        responsive="true" exportFilename="NES" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+                        #dt>
+                        <p-header>
+                            <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">Optical Router SubRacks</div>
+                            <br>
+                            <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                                <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                                <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                            </div>
+                            <br>
+                            <div class="ui-helper-clearfix">
+                                <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="Optical Router SubRacks"
+                                    (click)="dt.exportCSV()" style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                                <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+                            </div>
+                        </p-header>
+
+                        <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header" [sortable]="true">
+
+                        </p-column>
+                        <p-column styleClass="col-button" [style]="{'width': '150px'}">
+                            <ng-template let-col="rowData" pTemplate="body">
+                                <button (click)="navigateOPSubRackToDetails(col.value)" pButton type="button" label="View Details" class="ui-button-info"
+                                    style="float:right; cursor:pointer"></button>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+                    <p-dataTable *ngIf="displayOPBoardAttr" [value]="BoardData" [rows]="13" [paginator]="true" [globalFilter]="gb" [(selection)]="selectedColumnsItems"
+                        selectionMode="multiple" [metaKeySelection]="false" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+                        responsive="true" exportFilename="NES" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+                        #dt>
+                        <p-header>
+                            <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">Optical Router Boards</div>
+                            <br>
+                            <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                                <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                                <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                            </div>
+                            <br>
+                            <div class="ui-helper-clearfix">
+                                <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="Optical Router Boards"
+                                    (click)="dt.exportCSV()" style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                                <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+                            </div>
+                        </p-header>
+
+                        <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header" [sortable]="true">
+
+                        </p-column>
+                        <p-column styleClass="col-button" [style]="{'width': '150px'}">
+                            <ng-template let-col="rowData" pTemplate="body">
+                                <button (click)="navigateOPBoardToDetails(col.value)" pButton type="button" label="View Details" class="ui-button-info" style="float:right; cursor:pointer"></button>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+                    <p-dataTable *ngIf="displayOPPortAttr" [value]="PortData" [rows]="13" [paginator]="true" [globalFilter]="gb" [(selection)]="selectedColumnsItems"
+                        selectionMode="multiple" [metaKeySelection]="false" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+                        responsive="true" exportFilename="NES" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+                        #dt>
+                        <p-header>
+                            <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">Optical Router Ports</div>
+                            <br>
+                            <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                                <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                                <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                            </div>
+                            <br>
+                            <div class="ui-helper-clearfix">
+                                <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="Optical Router Ports"
+                                    (click)="dt.exportCSV()" style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                                <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+
+                            </div>
+                        </p-header>
+
+                        <p-column *ngFor="let col of cols3" [field]="col.field" [header]="col.header" [sortable]="true">
+
+                        </p-column>
+                        <p-column styleClass="col-button" [style]="{'width': '150px'}">
+                            <ng-template let-col="rowData" pTemplate="body">
+                                <button (click)="navigateOpPortToDetails(col.value)" pButton type="button" label="View Details" class="ui-button-info" style="float:right; cursor:pointer"></button>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+
+                    <p-dataTable *ngIf="displayOPSfpAttr" [value]="SfpData" [rows]="13" [paginator]="true" [globalFilter]="gb" [(selection)]="selectedColumnsItems"
+                        selectionMode="multiple" [metaKeySelection]="false" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+                        responsive="true" exportFilename="NES" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+                        #dt>
+                        <p-header>
+                            <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">Optical Router SFPs</div>
+                            <br>
+                            <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                                <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                                <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                            </div>
+                            <br>
+                            <div class="ui-helper-clearfix">
+                                <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="Optical Router SFPs"
+                                    (click)="dt.exportCSV()" style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                                <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+
+                            </div>
+                        </p-header>
+
+                        <p-column *ngFor="let col of cols4" [field]="col.field" [header]="col.header" [sortable]="true">
+
+                        </p-column>
+                        <p-column styleClass="col-button" [style]="{'width': '150px'}">
+                            <ng-template let-col="rowData" pTemplate="body">
+                                <button (click)="navigateOPsfpToDetails(col.value)" pButton type="button" label="View Details" class="ui-button-info" style="float:right; cursor:pointer"></button>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+
+                    <!-- Firewall -->
+                    <p-dataTable *ngIf="displayFWBoardAttr" [value]="BoardData" [rows]="13" [paginator]="true" [globalFilter]="gb" [(selection)]="selectedColumnsItems"
+                        selectionMode="multiple" [metaKeySelection]="false" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+                        responsive="true" exportFilename="NES" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+                        #dt>
+                        <p-header>
+                            <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">Firewall Router Boards</div>
+                            <br>
+                            <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                                <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                                <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                            </div>
+                            <br>
+                            <div class="ui-helper-clearfix">
+                                <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="Firewall Router Boards"
+                                    (click)="dt.exportCSV()" style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                                <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+                            </div>
+                        </p-header>
+
+                        <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header" [sortable]="true">
+
+                        </p-column>
+                        <p-column styleClass="col-button" [style]="{'width': '150px'}">
+                            <ng-template let-col="rowData" pTemplate="body">
+                                <button (click)="navigateFWBoardToDetails(col.value)" pButton type="button" label="View Details" class="ui-button-info" style="float:right; cursor:pointer"></button>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+                    <p-dataTable *ngIf="displayFWSubBoardAttr" [value]="SubBoardData" [rows]="13" [paginator]="true" [globalFilter]="gb" [(selection)]="selectedColumnsItems"
+                        selectionMode="multiple" [metaKeySelection]="false" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+                        responsive="true" exportFilename="NES" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+                        #dt>
+                        <p-header>
+                            <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">Firewall Router SubBoards</div>
+                            <br>
+                            <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                                <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                                <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                            </div>
+                            <br>
+                            <div class="ui-helper-clearfix">
+                                <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="Firewall Router SubBoards"
+                                    (click)="dt.exportCSV()" style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                                <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+                            </div>
+                        </p-header>
+
+                        <p-column *ngFor="let col of cols2" [field]="col.field" [header]="col.header" [sortable]="true">
+
+                        </p-column>
+                        <p-column styleClass="col-button" [style]="{'width': '150px'}">
+                            <ng-template let-col="rowData" pTemplate="body">
+                                <button (click)="navigateFWSubBoardToDetails(col.value)" pButton type="button" label="View Details" class="ui-button-info"
+                                    style="float:right; cursor:pointer"></button>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+                    <p-dataTable *ngIf="displayFWPortAttr" [value]="PortData" [rows]="13" [paginator]="true" [globalFilter]="gb" [(selection)]="selectedColumnsItems"
+                        selectionMode="multiple" [metaKeySelection]="false" reorderableColumns="true" scrollable="true" [resizableColumns]="true"
+                        responsive="true" exportFilename="NES" [style]="{'width':'400px','font-family':'Comic Sans MS, cursive, sans-serif'}"
+                        #dt>
+                        <p-header>
+                            <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">Firewall Router Ports</div>
+                            <br>
+                            <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                                <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                                <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                            </div>
+                            <br>
+                            <div class="ui-helper-clearfix">
+                                <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left" label="Firewall Router Ports"
+                                    (click)="dt.exportCSV()" style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                                <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "> Total Records : {{ dt.totalRecords }}</span>
+
+                            </div>
+                        </p-header>
+
+                        <p-column *ngFor="let col of cols3" [field]="col.field" [header]="col.header" [sortable]="true">
+
+                        </p-column>
+                        <p-column styleClass="col-button" [style]="{'width': '150px'}">
+                            <ng-template let-col="rowData" pTemplate="body">
+                                <button (click)="navigateFWPortToDetails(col.value)" pButton type="button" label="View Details" class="ui-button-info" style="float:right; cursor:pointer"></button>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+
+
+                </div>
+            </div>
+            <div class="col-xs-1"></div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,14 @@
+D:\OSS\Operation SubSystem\OSS\Syriatel.OSS.DataAccessLayer\Syriatel.OSS.DataAccessLayer\bin\Debug\Syriatel.OSS.DataAccessLayer.dll.config
+D:\OSS\Operation SubSystem\OSS\Syriatel.OSS.DataAccessLayer\Syriatel.OSS.DataAccessLayer\bin\Debug\Syriatel.OSS.DataAccessLayer.dll
+D:\OSS\Operation SubSystem\OSS\Syriatel.OSS.DataAccessLayer\Syriatel.OSS.DataAccessLayer\bin\Debug\Syriatel.OSS.DataAccessLayer.pdb
+D:\OSS\Operation SubSystem\OSS\Syriatel.OSS.DataAccessLayer\Syriatel.OSS.DataAccessLayer\bin\Debug\EntityFramework.dll
+D:\OSS\Operation SubSystem\OSS\Syriatel.OSS.DataAccessLayer\Syriatel.OSS.DataAccessLayer\bin\Debug\EntityFramework.SqlServer.dll
+D:\OSS\Operation SubSystem\OSS\Syriatel.OSS.DataAccessLayer\Syriatel.OSS.DataAccessLayer\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\OSS\Operation SubSystem\OSS\Syriatel.OSS.DataAccessLayer\Syriatel.OSS.DataAccessLayer\bin\Debug\Oracle.ManagedDataAccess.EntityFramework.dll
+D:\OSS\Operation SubSystem\OSS\Syriatel.OSS.DataAccessLayer\Syriatel.OSS.DataAccessLayer\bin\Debug\EntityFramework.xml
+D:\OSS\Operation SubSystem\OSS\Syriatel.OSS.DataAccessLayer\Syriatel.OSS.DataAccessLayer\bin\Debug\EntityFramework.SqlServer.xml
+D:\OSS\Operation SubSystem\OSS\Syriatel.OSS.DataAccessLayer\Syriatel.OSS.DataAccessLayer\obj\Debug\Syriatel.OSS.DataAccessLayer.Migrations.InitEntities.resources
+D:\OSS\Operation SubSystem\OSS\Syriatel.OSS.DataAccessLayer\Syriatel.OSS.DataAccessLayer\obj\Debug\Syriatel.OSS.DataAccessLayer.Migrations.TestMig.resources
+D:\OSS\Operation SubSystem\OSS\Syriatel.OSS.DataAccessLayer\Syriatel.OSS.DataAccessLayer\obj\Debug\Syriatel.OSS.DataAccessLayer.csproj.GenerateResource.Cache
+D:\OSS\Operation SubSystem\OSS\Syriatel.OSS.DataAccessLayer\Syriatel.OSS.DataAccessLayer\obj\Debug\Syriatel.OSS.DataAccessLayer.dll
+D:\OSS\Operation SubSystem\OSS\Syriatel.OSS.DataAccessLayer\Syriatel.OSS.DataAccessLayer\obj\Debug\Syriatel.OSS.DataAccessLayer.pdb

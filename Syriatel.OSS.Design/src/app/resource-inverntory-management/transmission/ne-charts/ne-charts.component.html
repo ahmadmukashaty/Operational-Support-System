@@ -1,0 +1,537 @@
+<ngx-loading [show]="loading" [config]="config1"></ngx-loading>
+<div class="page1-test">
+    <div class="row">
+        <div class="col-xs-3 RAN_chart_lebel elegantshadow" (click)="ShowCharts($event)">
+            <label class="label_css col-x-2">Transmission Charts</label>
+        </div>
+        <div class="col-xs-3 RAN_criteria_lebel">
+            <label class="col-x-2 label_criteria" (click)="ShowCriteria($event)">Charts Criteria</label>
+        </div>
+        <div class="col-xs-4 generateChart">
+            <button *ngIf="showCat&&showGen" pButton type="button" class="hover-btn" label="Generate Chart" (click)="GenerateChart()"
+                style="background-color: #00b1ba; color:white; float:right;" icon="fa fa-newspaper"></button>
+        </div>
+        <!-- <div class="col-xs-2 toggleChart">
+            <button pButton type="button" class="hover-btn" label="Toggle Chart" (click)="randomizeType()" style="background-color: #007bff; color:white; float:right;"
+                icon="fa fa-newspaper"></button>
+        </div> -->
+    </div>
+
+    <div class="row ChartsVeiw">
+        <div *ngIf="show" class="chart-style box shadow10 col-xs-5">
+            <div class="p-header-style">
+                <div id="more-details"> DataCom types count chart: <label
+                        *ngIf="barChartData_list==null" style="color: crimson">no data matched</label>
+                    <i class="fa fa-angle-double-down" (click)="toggleOpenedChart1()" style="float: right;width: 20px;"></i>
+                    <br>
+                    <br>
+                </div>
+                <div  align="center">
+                    <div *ngIf="DC_barChartData_list">
+                        <canvas baseChart class="canvas1" width="700" height="300" [datasets]="DC_barChartData_list"
+                            [labels]="DC_charbarlist" chartType="bar" [options]="barChartOptions" [colors]="colors"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="show" class="chart-style box shadow11 col-xs-5">
+            <div class="p-header-style">
+                <div id="more-details">Optical types count chart: <label
+                        *ngIf="OP_barChartData_list==null" style="color: crimson">no data matched</label>
+                    <i class="fa fa-angle-double-down" (click)="toggleOpenedChart2()" style="float: right;width: 10px;"></i>
+                    <br>
+                    <br>
+                </div>
+                <div  align="center">
+                    <div *ngIf="OP_barChartData_list">
+                        <canvas baseChart class="canvas2" width="700" height="300" [datasets]="OP_barChartData_list"
+                            [labels]="OP_charbarlist" chartType="bar" options="barChartOptions" [colors]="colors"></canvas>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div *ngIf="show" class="chart-style box shadow12 col-xs-5">
+
+            <div class="p-header-style">
+                <div id="more-details">MicroWave types count chart: <label *ngIf="MW_barChartData_list==null"
+                        style="color: crimson">no data matched</label>
+                    <i class="fa fa-angle-double-down" (click)="toggleOpenedChart3()" style="float: right;width: 20px;"></i>
+                    <br>
+                    <br>
+                </div>
+                <div  align="center">
+                    <div>
+                        <div *ngIf="MW_barChartData_list">
+                            <canvas baseChart class="canvas3" width="700" height="300" [datasets]="MW_barChartData_list"
+                                [labels]="MW_charbarlist" chartType="bar" [options]="barChartOptions" [colors]="colors"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div *ngIf="show" class="chart-style box shadow13 col-xs-5">
+
+            <div class="p-header-style">
+                <div id="more-details">FireWall types count chart: <label *ngIf="FW_barChartData_list==null"
+                        style="color: crimson">no data matched</label>
+                    <i class="fa fa-angle-double-down" (click)="toggleOpenedChart4()" style="float: right;width: 20px;"></i>
+                    <br>
+                    <br>
+                </div>
+                <div  align="center">
+                    <div *ngIf="FW_barChartData_list">
+                        <canvas baseChart class="canvas4" width="700" height="300" [datasets]="FW_barChartData_list"
+                            [labels]="FW_charbarlist" chartType="bar" [options]="barChartOptions" [colors]="colors"></canvas>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div *ngIf="show2" class="chart-style box shadow14 col-xs-5">
+
+            <div class="p-header-style">
+                <div id="more-details">Busyness chart: {{selectedCategory}} : {{SelectedLevel}} ---> {{SelectedLevelDes}} <label *ngIf="busynessChartData==null"
+                        style="color: crimson">no data matched</label>
+                    <i class="fa fa-angle-double-down" (click)="toggleOpenedChart4()" style="float: right;width: 20px;"></i>
+                    <br>
+                    <br>
+                </div>
+                <div  align="center">
+                    <div *ngIf="busynessChartData">
+                        <canvas baseChart class="canvas4" width="700" height="300" [datasets]="busynessChartData"
+                            [labels]="busynessChartLabel" chartType="bar" [options]="barChartOptions" [colors]="colors"></canvas>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div *ngIf="show2" class="chart-style box shadow15 col-xs-5">
+
+            <div class="p-header-style">
+                <div id="more-details">Types counts chart: {{selectedCategory}} : {{SelectedLevel}}  <label *ngIf="barChartData_list==null"
+                        style="color: crimson">no data matched</label>
+                    <i class="fa fa-angle-double-down" (click)="toggleOpenedChart4()" style="float: right;width: 20px;"></i>
+                    <br>
+                    <br>
+                </div>
+                <div  align="center">
+                    <div *ngIf="busynessChartData">
+                        <canvas baseChart class="canvas4" width="700" height="300" [datasets]="barChartData_list"
+                            [labels]="charbarlist_temp" chartType="bar" [options]="barChartOptions" [colors]="colors"></canvas>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="row ChartsCriteria">
+
+        <div class="col-xs-5 filter-pos">
+            <div class="col-x-1"></div>
+            <div class="tree_style box shadow1 filter-pos">
+
+                <div class="p-header-style">
+                    <span id="more-details" (click)="toggleOpenedSidebar()" style="text-align: center">Location and
+                        Site Filter
+                        <i class="fa fa-angle-double-down" style="float: right;width: 10px;"></i>
+                        <br>
+                        <br>
+                    </span>
+                </div>
+
+                <div [@mobileMenuTop]="isCollapsedSideBar" id="more-detailss3" class="more-details" [ngClass]="isCollapsedSideBar"
+                    align="left">
+                    <!-- <tree-root #tree [focused]="true" [nodes]="nodes" [options]="options"></tree-root> -->
+
+
+
+                    <span class="col-x-1 header_loc" style="margin-left:1px; vertical-align:center; padding-left:130px;">Location
+                        Filters:</span>
+                    <br>
+                    <br>
+
+                    <div class="row">
+                        <label class="col-x-1" style="vertical-align:left; padding-left:50px;">Region: </label>
+                        <div class="col-x-1" style="padding-left:60px">
+                            <p-dropdown [options]="Region" [(ngModel)]="selectedRegion" [style]="{'width':'180px'}"
+                                filter="true" placeholder="Select Region" (onChange)="RegionSelect($event)">
+                                <ng-template let-item pTemplate="selectedItem">
+                                    <!-- <img src="../../../../../assets/images/car/{{item.label}}.png" style="width:16px;vertical-align:right" /> -->
+                                    <span style="vertical-align:middle">{{item.label}}</span>
+                                </ng-template>
+                                <ng-template let-region pTemplate="item">
+                                    <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                                        <!-- <img src="../../../../../assets/images/car/{{region.label}}.png" style="width:24px;position:absolute;top:1px;left:5px"/> -->
+                                        <div *ngIf="region.label!='All'" style="font-size:14px;float:right;margin-top:4px">{{region.label}}</div>
+                                    </div>
+                                </ng-template>
+                            </p-dropdown>
+                        </div>
+
+                    </div>
+
+                    <br>
+                    <div class="row">
+                        <label style="vertical-align:left;padding-left:50px;" class="col-x-1">Area: </label>
+                        <div class="col-x-1" style="padding-left:72px">
+                            <p-dropdown [options]="Area" [(ngModel)]="selectedArea" [style]="{'width':'180px'}" filter="true"
+                                placeholder="Select Area" (click)="AreaSelect($event)" disabled="{{ DisableArea }}">
+                                <ng-template let-item1 pTemplate="selectedItem">
+                                    <!-- <img src="../../../../../assets/images/car/{{item1.label}}.png" style="width:16px;vertical-align:center" /> -->
+                                    <span style="vertical-align:middle">{{item1.label}}</span>
+                                </ng-template>
+                                <ng-template let-area pTemplate="item1">
+                                    <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                                        <!-- <img src="../../../../../assets/images/car/{{area.label}}.png" style="width:24px;position:absolute;top:1px;left:5px"/> -->
+                                        <div *ngIf="area.label!='All'" style="font-size:14px;float:right;margin-top:4px">{{area.label}}</div>
+                                    </div>
+                                </ng-template>
+                            </p-dropdown>
+
+                        </div>
+                    </div>
+
+
+                    <br>
+                    <div class="row">
+                        <label style="vertical-align:left;padding-left:50px;" class="col-x-1">Zone: </label>
+                        <div class="col-x-1" style="padding-left:72px">
+                            <p-dropdown [options]="Zones" [(ngModel)]="selectedZone" [style]="{'width':'180px'}" filter="true"
+                                placeholder="Select Zone" disabled="{{ DisableZone }}" (onChange)="ZoneSelect($event)">
+                                <ng-template let-item2 pTemplate="selectedItem">
+                                    <!-- <img src="../../../../../assets/images/car/{{item2.label}}.png" style="width:16px;vertical-align:center" /> -->
+                                    <span style="vertical-align:middle">{{item2.label}}</span>
+                                </ng-template>
+                                <ng-template let-zone pTemplate="item2">
+                                    <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                                        <!-- <img src="../../../../../assets/images/car/{{zone.label}}.png" style="width:24px;position:absolute;top:1px;left:5px"/> -->
+                                        <div *ngIf="zone.label!='All'" style="font-size:14px;float:right;margin-top:4px">{{zone.label}}</div>
+                                    </div>
+                                </ng-template>
+                            </p-dropdown>
+                        </div>
+                    </div>
+
+
+
+
+                    <br>
+                    <div class="row">
+                        <label style="vertical-align:left;padding-left:50px;" class="col-x-1">SubArea: </label>
+                        <div class="col-x-1" style="padding-left:43px">
+                            <p-dropdown [options]="SubAreas" [(ngModel)]="selectedSubArea" [style]="{'width':'180px'}"
+                                filter="true" placeholder="Select Sub Area" disabled="{{ DisableSubArea }}" (onChange)="SubAreaSelect($event)">
+                                <ng-template let-item3 pTemplate="selectedItem">
+                                    <!-- <img src="../../../../../assets/images/car/{{item3.label}}.png" style="width:16px;vertical-align:center" /> -->
+                                    <span style="vertical-align:middle">{{item3.label}}</span>
+                                </ng-template>
+                                <ng-template let-subarea pTemplate="item3">
+                                    <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                                        <!-- <img src="../../../../../assets/images/car/{{subarea.label}}.png" style="width:24px;position:absolute;top:1px;left:5px"/> -->
+                                        <div *ngIf="subarea.label!='All'" style="font-size:14px;float:right;margin-top:4px">{{subarea.label}}</div>
+                                    </div>
+                                </ng-template>
+                            </p-dropdown>
+                        </div>
+                    </div>
+
+                    <br>
+                    <br>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+        <div class="col-xs-5 filter-pos">
+            <div class="tree_style box shadow2 filter-pos">
+
+                <div class="p-header-style">
+                    <span id="more-details" (click)="toggleOpenedSidebar2()">Select NE Levels
+                        <i class="fa fa-angle-double-down" style="float: right;width: 10px;"></i>
+                        <br>
+                        <br>
+                    </span>
+                </div>
+
+                <div [@mobileMenuTop]="isCollapsedSideBar2" id="more-detailss3" class="more-details" [ngClass]="isCollapsedSideBar2"
+                    align="">
+
+                    <!-- <tree-root #NodeLevels [nodes]="NodesOfLevels" [options]="optionsLevel"></tree-root> -->
+                    <div class="row">
+                        <label style="vertical-align:left;padding-left:50px;" class="col-x-1">Category: </label>
+                        <div class="col-x-1" style="vertical-align:left;padding-left:65px">
+                            <p-dropdown *ngIf="showCat" [options]="Categories" [(ngModel)]="selectedCategory" [style]="{'width':'180px'}"
+                                placeholder="Select Category" (onChange)="CategorySelect($event)">
+
+                            </p-dropdown>
+                        </div>
+                    </div>
+
+                    <div *ngIf="NeLevel" class="ui-g" style="width:250px;margin-bottom:10px;padding-left: 55px">
+                        <!--<div class="ui-g-12"><p-radioButton name="group1" value="ne" label="NE" [(ngModel)]="SelectedLevel" inputId="opt1"></p-radioButton></div>-->
+
+                        <div class="ui-g-12" *ngFor="let i of NeLevel_Data">
+
+                            <p-radioButton name="group1" [value]='i.DISPLAYNAME' [label]='i.DISPLAYNAME' [(ngModel)]="SelectedLevel"
+                                (click)="SelectedLevelSelect($event,i.DISPLAYNAME,i.TABLENAME,i.COLUMNNAME,i.COLUMNTYPE)"></p-radioButton>
+                        </div>
+
+                    </div>
+                    <div *ngIf="NeLevel" class="ui-g" style="width:250px;margin-bottom:10px">
+                        <!--<div class="ui-g-12"><p-radioButton name="group1" value="ne" label="NE" [(ngModel)]="SelectedLevel" inputId="opt1"></p-radioButton></div>-->
+                        <br>
+                        <br>
+                        <label style="vertical-align:left;padding-left:50px;" class="col-x-1">Choose Busyness level:
+                        </label>
+
+                        <div style="vertical-align:left;padding-left:65px;" class="ui-g-12" *ngFor="let j of NeLevel_Data_Des">
+
+                            <p-radioButton name="group2" [value]='j.DISPLAYNAME' [label]='j.DISPLAYNAME' [(ngModel)]="SelectedLevelDes"
+                                (click)="SelectedLevelSelectDes($event,j.TypeLevel.DISPLAYNAME)"></p-radioButton>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <div class="ReportChart" *ngIf="ShowDefReport">
+        <div class="box shadow1">
+            <p-dataTable [value]="DC_ShowRepTypeCount" [rows]="10" [paginator]="true" exportFilename="Busyness"
+                reorderableColumns="true" scrollable="true" [resizableColumns]="false" responsive="true" exportFilename="Busyness"
+                [style]="{'width':'250px','font-family':'Comic Sans MS, cursive, sans-serif'}" #dt>
+
+                <p-header>
+
+                    <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;"> Datacom Types count</div>
+                    <br>
+                    <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                        <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                        <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                    </div>
+                    <br>
+                    <div class="ui-helper-clearfix">
+                        <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left"
+                            label="Export to Excel" (click)="dt.exportCSV()" style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                        <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; ">
+                            Total Records : {{DC_ShowRepTypeCount?.length}}</span>
+                    </div>
+
+                </p-header>
+                <p-column *ngFor="let col of colsTypeCount" [style]="{'width': '200px','align': 'right'}" [field]="col.field"
+                    [header]="col.header" [filter]="true" [sortable]="true" filterPlaceholder="Search">
+                </p-column>
+
+            </p-dataTable>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="ReportChart" *ngIf="ShowDefReport">
+        <div class="box shadow1">
+
+
+            <p-dataTable [value]="OP_ShowRepTypeCount" [rows]="10" [paginator]="true" exportFilename="NeTypesCount"
+                reorderableColumns="true" scrollable="true" [resizableColumns]="false" responsive="true" exportFilename="Busyness"
+                [style]="{'width':'260px','font-family':'Comic Sans MS, cursive, sans-serif'}" #dt>
+
+                <p-header>
+
+                    <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">Optical Types count</div>
+                    <br>
+                    <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                        <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                        <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                    </div>
+                    <br>
+                    <div class="ui-helper-clearfix">
+                        <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left"
+                            label="Export to Excel" (click)="dt.exportCSV()" style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                        <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; ">
+                            Total Records : {{OP_ShowRepTypeCount?.length}}</span>
+                    </div>
+
+                </p-header>
+                <p-column *ngFor="let col of colsTypeCount" [style]="{'width': '200px','align': 'right'}" [field]="col.field"
+                    [header]="col.header" [filter]="true" [sortable]="true" filterPlaceholder="Search">
+                </p-column>
+
+            </p-dataTable>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="ReportChart" *ngIf="ShowDefReport">
+        <div class="box shadow1">
+
+
+            <p-dataTable [value]="MW_ShowRepTypeCount" [rows]="10" [paginator]="true" exportFilename="HostVersions"
+                reorderableColumns="true" scrollable="true" [resizableColumns]="false" responsive="true" exportFilename="Busyness"
+                [style]="{'width':'260px','font-family':'Comic Sans MS, cursive, sans-serif'}" #dt>
+
+                <p-header>
+
+                    <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">MicroWave Types count</div>
+                    <br>
+                    <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                        <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                        <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                    </div>
+                    <br>
+                    <div class="ui-helper-clearfix">
+                        <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left"
+                            label="Export to Excel" (click)="dt.exportCSV()" style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                        <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; ">
+                            Total Records : {{MW_ShowRepTypeCount?.length}}</span>
+                    </div>
+
+                </p-header>
+                <p-column *ngFor="let col of colsTypeCount" [style]="{'width': '200px','align': 'right'}" [field]="col.field"
+                    [header]="col.header" [filter]="true" [sortable]="true" filterPlaceholder="Search">
+                </p-column>
+
+            </p-dataTable>
+        </div>
+    </div>
+
+    <div class="ReportChart" *ngIf="ShowDefReport">
+        <div class="box shadow1">
+
+
+            <p-dataTable [value]="FW_ShowRepTypeCount" [rows]="10" [paginator]="true" exportFilename="CellTypesCount"
+                reorderableColumns="true" scrollable="true" [resizableColumns]="false" responsive="true" exportFilename="Busyness"
+                [style]="{'width':'260px','font-family':'Comic Sans MS, cursive, sans-serif'}" #dt>
+
+                <p-header>
+
+                    <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">FireWall Types count</div>
+                    <br>
+                    <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                        <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                        <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                    </div>
+                    <br>
+                    <div class="ui-helper-clearfix">
+                        <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left"
+                            label="Export to Excel" (click)="dt.exportCSV()" style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                        <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; ">
+                            Total Records : {{FW_ShowRepTypeCount?.length}}</span>
+                    </div>
+
+                </p-header>
+                <p-column *ngFor="let col of colsTypeCount" [style]="{'width': '200px','align': 'right'}" [field]="col.field"
+                    [header]="col.header" [filter]="true" [sortable]="true" filterPlaceholder="Search">
+                </p-column>
+
+            </p-dataTable>
+        </div>
+    </div>
+
+
+    <div class="ReportChart" *ngIf="ShowBusynessReport">
+        <div class="box shadow1">
+
+
+            <p-dataTable [value]="ShowRepBusyness" [rows]="10" [paginator]="true" exportFilename="NeTypesCount"
+                reorderableColumns="true" scrollable="true" [resizableColumns]="false" responsive="true" exportFilename="Busyness"
+                [style]="{'width':'260px','font-family':'Comic Sans MS, cursive, sans-serif'}" #dt>
+
+                <p-header>
+
+                    <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">{{selectedCategory}} : ({{SelectedLevel}}) ---> ({{SelectedLevelDes}})   Busyness Report</div>
+                    <br>
+                    <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                        <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                        <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                    </div>
+                    <br>
+                    <div class="ui-helper-clearfix">
+                        <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left"
+                            label="Export to Excel" (click)="dt.exportCSV()" style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                        <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; ">
+                            Total Records : {{ShowRepBusyness?.length}}</span>
+                    </div>
+
+                </p-header>
+                <p-column *ngFor="let col of cols" [style]="{'width': '200px','align': 'right'}" [field]="col.field"
+                    [header]="col.header" [filter]="true" [sortable]="true" filterPlaceholder="Search">
+                </p-column>
+
+            </p-dataTable>
+        </div>
+    </div>
+    <br />
+    <br />
+
+    <div class="ReportChart" *ngIf="ShowTypeCountReport">
+        <div class="box shadow1">
+
+
+            <p-dataTable [value]="ShowRepTypeCount" [rows]="15" [paginator]="true" exportFilename="NeTypesCount"
+                reorderableColumns="true" scrollable="true" [resizableColumns]="false" responsive="true" exportFilename="Busyness"
+                [style]="{'width':'260px','font-family':'Comic Sans MS, cursive, sans-serif'}" #dt>
+
+                <p-header>
+
+                    <div class="p-header-style" style="font-family:'Comic Sans MS', cursive, sans-serif;">{{SelectedLevel}}s
+                        Count Report</div>
+                    <br>
+                    <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;width:100%">
+                        <i class="fa fa-search" style="margin:4px 4px 0 0;float:left"></i>
+                        <input #gb type="text" pInputText size="50" placeholder="Global Filter" style="width:97%">
+                    </div>
+                    <br>
+                    <div class="ui-helper-clearfix">
+                        <button pButton type="button" class="ui-button-Primary" pButton icon="fa-file-o" iconPos="left"
+                            label="Export to Excel" (click)="dt.exportCSV()" style="float:left;background: #878991; color:white;font-family:'Comic Sans MS', cursive, sans-serif; "></button>
+                        <span style="float:right; color:white;font-family:'Comic Sans MS', cursive, sans-serif; ">
+                            Total Records : {{ShowRepTypeCount?.length}}</span>
+                    </div>
+
+                </p-header>
+                <p-column *ngFor="let col of colsTypeCount" [style]="{'width': '200px','align': 'right'}" [field]="col.field"
+                    [header]="col.header" [filter]="true" [sortable]="true" filterPlaceholder="Search">
+                </p-column>
+
+            </p-dataTable>
+        </div>
+    </div>
+    <br />
+    <br />
+
+
+    <!-- <div *ngIf="dataReady">
+  <canvas baseChart width="30px" height="30px" [datasets]="lineChartData" [labels]="chartLabels" chartType={{eChartType}} [options]="lineChartOptions"></canvas>
+  </div>
+  <button (click)="updateData()">Add - Solution 1</button>
+  <button (click)="updateData2()">Add - Solution 2</button>
+
+-->
+
+
+
+</div>

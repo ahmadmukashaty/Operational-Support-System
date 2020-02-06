@@ -1,0 +1,20 @@
+.Naviagetion_Category li{
+    width: 190px;
+  }
+  .Naviagetion_Category{
+    padding-left: 600px !important;
+  }
+
+  @media (max-width: 1700px) {
+	.Naviagetion_Category{
+	  padding-left: 150px !important;
+	}
+  }
+  .oddStyle{
+    background: #00b1ba !important;
+    /* background: rgb(57, 57, 114) !important; */
+  }
+  .evenStyle{
+    background: #088389 !important;
+    /* background: rgb(107, 107, 173) !important; */
+  }
