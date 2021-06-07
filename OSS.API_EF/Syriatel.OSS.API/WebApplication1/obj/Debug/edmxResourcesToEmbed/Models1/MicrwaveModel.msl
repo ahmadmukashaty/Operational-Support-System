@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities3">
+    <EntitySetMapping Name="MW_BOARD">
+      <EntityTypeMapping TypeName="Model.MW_BOARD">
+        <MappingFragment StoreEntitySet="MW_BOARD">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TYPE_ID" ColumnName="TYPE_ID" />
+          <ScalarProperty Name="SLOT_ID" ColumnName="SLOT_ID" />
+          <ScalarProperty Name="SOFTWARE_VERSION" ColumnName="SOFTWARE_VERSION" />
+          <ScalarProperty Name="HARDWARE_VERSION" ColumnName="HARDWARE_VERSION" />
+          <ScalarProperty Name="BIOS_VERSION" ColumnName="BIOS_VERSION" />
+          <ScalarProperty Name="FPGA_VERSION" ColumnName="FPGA_VERSION" />
+          <ScalarProperty Name="SERIAL_NUMBER" ColumnName="SERIAL_NUMBER" />
+          <ScalarProperty Name="BOM_ITEM" ColumnName="BOM_ITEM" />
+          <ScalarProperty Name="BARCODE" ColumnName="BARCODE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MANUFACTURE_DATE" ColumnName="MANUFACTURE_DATE" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MW_BOARD_TYPE">
+      <EntityTypeMapping TypeName="Model.MW_BOARD_TYPE">
+        <MappingFragment StoreEntitySet="MW_BOARD_TYPE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MW_NE">
+      <EntityTypeMapping TypeName="Model.MW_NE">
+        <MappingFragment StoreEntitySet="MW_NE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TYPE_ID" ColumnName="TYPE_ID" />
+          <ScalarProperty Name="NE_ID" ColumnName="NE_ID" />
+          <ScalarProperty Name="U2000_REF_ID" ColumnName="U2000_REF_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="SUBRACK_TYPE" ColumnName="SUBRACK_TYPE" />
+          <ScalarProperty Name="GATEWAY_TYPE" ColumnName="GATEWAY_TYPE" />
+          <ScalarProperty Name="IP" ColumnName="IP" />
+          <ScalarProperty Name="MAC_ADDRESS" ColumnName="MAC_ADDRESS" />
+          <ScalarProperty Name="SOFTWARE_VERSION" ColumnName="SOFTWARE_VERSION" />
+          <ScalarProperty Name="PATCH_VERSION" ColumnName="PATCH_VERSION" />
+          <ScalarProperty Name="LSR_ID" ColumnName="LSR_ID" />
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="DEPLOYMENT_STATUS" ColumnName="DEPLOYMENT_STATUS" />
+          <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+          <ScalarProperty Name="SITE_MODEL" ColumnName="SITE_MODEL" />
+          <ScalarProperty Name="TERMINAL_CLASS" ColumnName="TERMINAL_CLASS" />
+          <ScalarProperty Name="SUB_CATEGORY_ID" ColumnName="SUB_CATEGORY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MW_NE_BOARD">
+      <EntityTypeMapping TypeName="Model.MW_NE_BOARD">
+        <MappingFragment StoreEntitySet="MW_NE_BOARD">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          <ScalarProperty Name="CHILD_ID" ColumnName="CHILD_ID" />
+          <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+          <ScalarProperty Name="RETIRE_DATE" ColumnName="RETIRE_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MW_NE_SITE">
+      <EntityTypeMapping TypeName="Model.MW_NE_SITE">
+        <MappingFragment StoreEntitySet="MW_NE_SITE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NE_ID" ColumnName="NE_ID" />
+          <ScalarProperty Name="SITE_ID" ColumnName="SITE_ID" />
+          <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+          <ScalarProperty Name="RETIRE_DATE" ColumnName="RETIRE_DATE" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MW_NE_TYPE">
+      <EntityTypeMapping TypeName="Model.MW_NE_TYPE">
+        <MappingFragment StoreEntitySet="MW_NE_TYPE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="SERIES" ColumnName="SERIES" />
+          <ScalarProperty Name="VENDOR" ColumnName="VENDOR" />
+          <ScalarProperty Name="CLASS" ColumnName="CLASS" />
+          <ScalarProperty Name="MAX_BRD_NMB" ColumnName="MAX_BRD_NMB" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MW_PORT">
+      <EntityTypeMapping TypeName="Model.MW_PORT">
+        <MappingFragment StoreEntitySet="MW_PORT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TYPE_ID" ColumnName="TYPE_ID" />
+          <ScalarProperty Name="PORT_ID" ColumnName="PORT_ID" />
+          <ScalarProperty Name="PORT_NAME" ColumnName="PORT_NAME" />
+          <ScalarProperty Name="PORT_LEVEL" ColumnName="PORT_LEVEL" />
+          <ScalarProperty Name="RATE_BPS" ColumnName="RATE_BPS" />
+          <ScalarProperty Name="DEPLOYMENT_STATUS" ColumnName="DEPLOYMENT_STATUS" />
+          <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MW_PORT_SFP">
+      <EntityTypeMapping TypeName="Model.MW_PORT_SFP">
+        <MappingFragment StoreEntitySet="MW_PORT_SFP">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          <ScalarProperty Name="CHILD_ID" ColumnName="CHILD_ID" />
+          <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+          <ScalarProperty Name="RETIRE_DATE" ColumnName="RETIRE_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MW_PORT_TYPE">
+      <EntityTypeMapping TypeName="Model.MW_PORT_TYPE">
+        <MappingFragment StoreEntitySet="MW_PORT_TYPE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MW_SFP">
+      <EntityTypeMapping TypeName="Model.MW_SFP">
+        <MappingFragment StoreEntitySet="MW_SFP">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="SERIAL_NUMBER" ColumnName="SERIAL_NUMBER" />
+          <ScalarProperty Name="CLEI_CODE" ColumnName="CLEI_CODE" />
+          <ScalarProperty Name="FIBER_CABLE_TYPE" ColumnName="FIBER_CABLE_TYPE" />
+          <ScalarProperty Name="BOM_CODE" ColumnName="BOM_CODE" />
+          <ScalarProperty Name="MANUFACTURER" ColumnName="MANUFACTURER" />
+          <ScalarProperty Name="MANUFACTURE_DATE" ColumnName="MANUFACTURE_DATE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MW_SUBRACK_TYPE">
+      <EntityTypeMapping TypeName="Model.MW_SUBRACK_TYPE">
+        <MappingFragment StoreEntitySet="MW_SUBRACK_TYPE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RIM_CATEGORY">
+      <EntityTypeMapping TypeName="Model.RIM_CATEGORY">
+        <MappingFragment StoreEntitySet="RIM_CATEGORY">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MODULE_NAME" ColumnName="MODULE_NAME" />
+          <ScalarProperty Name="ORDER_NUM" ColumnName="ORDER_NUM" />
+          <ScalarProperty Name="Structure" ColumnName="Structure" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RIM_SUBCATEGORY">
+      <EntityTypeMapping TypeName="Model.RIM_SUBCATEGORY">
+        <MappingFragment StoreEntitySet="RIM_SUBCATEGORY">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SITEs">
+      <EntityTypeMapping TypeName="Model.SITE">
+        <MappingFragment StoreEntitySet="SITE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="ENGLISH_NAME" ColumnName="ENGLISH_NAME" />
+          <ScalarProperty Name="REGION" ColumnName="REGION" />
+          <ScalarProperty Name="AREA" ColumnName="AREA" />
+          <ScalarProperty Name="ZONE" ColumnName="ZONE" />
+          <ScalarProperty Name="SUBAREA" ColumnName="SUBAREA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
